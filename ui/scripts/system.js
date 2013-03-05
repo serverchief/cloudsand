@@ -7387,6 +7387,7 @@
                     docID: 'helpClusterHypervisor',
                     select: function(args) {
                       var vSwitchEnabled = false;
+                      var dvSwitchEnabled = false;
 
                       $.ajax({
                         url: createURL("listHypervisors"),
@@ -7415,6 +7416,20 @@
                           }
                         }
                       });
+                      
+                      //Check whether dvSwitch is enabled or not
+                      $.ajax({
+                        url: createURL('listConfigurations'),
+                        data: {
+                           name: 'vmware.use.dvswitch'
+                              },
+                        async: false,
+                        success: function(json) {
+                          if (json.listconfigurationsresponse.configuration[0].value == 'true') {
+                                dvSwitchEnabled = true;
+                          }
+                        }
+                      });
 
                       args.$select.bind("change", function(event) {
                         var $form = $(this).closest('form');
@@ -7430,6 +7445,30 @@
 
                         if ($(this).val() == "VMware") {
                           //$('li[input_sub_group="external"]', $dialogAddCluster).show();
+
+                          if(dvSwitchEnabled ){
+                        // $form.find('.form-item[rel=vSwitchPublicType]').css('display', 'inline-block');
+                         // $form.find('.form-item[rel=vSwitchGuestType]').css('display', 'inline-block');
+                         // $form.find('.form-item[rel=vSwitchPublicName]').css('display','inline-block');
+                          //$form.find('.form-item[rel=vSwitchGuestName]').css('display','inline-block');
+                          $form.find('.form-item[rel=overridepublictraffic]').css('display','inline-block');
+                          $form.find('.form-item[rel=overridepublictraffic]').find('input[type=checkbox]').removeAttr('checked');
+                          
+                          $form.find('.form-item[rel=overrideguesttraffic]').css('display','inline-block');
+                          $form.find('.form-item[rel=overrideguesttraffic]').find('input[type=checkbox]').removeAttr('checked');
+
+ 
+
+                         }
+                          else {
+                                //  $form.find('.form-item[rel=vSwitchPublicType]').css('display', 'none');
+                                //  $form.find('.form-item[rel=vSwitchGuestType]').css('display', 'none');
+                                //  $form.find('.form-item[rel=vSwitchPublicName]').css('display','none');
+                                 // $form.find('.form-item[rel=vSwitchGuestName]').css('display','none');
+                                  $form.find('.form-item[rel=overridepublictraffic]').css('display','none');
+                                  $form.find('.form-item[rel=overrideguesttraffic]').css('display','none');
+
+                          } 
                           $form.find('.form-item[rel=vCenterHost]').css('display', 'inline-block');
                           $form.find('.form-item[rel=vCenterUsername]').css('display', 'inline-block');
                           $form.find('.form-item[rel=vCenterPassword]').css('display', 'inline-block');
@@ -7441,6 +7480,16 @@
                             $vsmFields.css('display', 'none'); 
                           }
                         } else {
+                          
+                 
+                           $form.find('.form-item[rel=overridepublictraffic]').css('display', 'none');
+                           $form.find('.form-item[rel=overrideguesttraffic]').css('display', 'none');
+                           $form.find('.form-item[rel=vSwitchPublicType]').css('display', 'none');
+                           $form.find('.form-item[rel=vSwitchGuestType]').css('display', 'none');
+                           $form.find('.form-item[rel=vSwitchPublicName]').css('display','none');
+                           $form.find('.form-item[rel=vSwitchGuestName]').css('display','none');
+
+
                           $form.find('.form-item[rel=vCenterHost]').css('display', 'none');
                           $form.find('.form-item[rel=vCenterUsername]').css('display', 'none');
                           $form.find('.form-item[rel=vCenterPassword]').css('display', 'none');
@@ -7481,6 +7530,7 @@
                   },
 
                   //hypervisor==VMWare begins here
+
                   vCenterHost: {
                     label: 'label.vcenter.host',
                     docID: 'helpClustervCenterHost',
@@ -7502,6 +7552,70 @@
                     docID: 'helpClustervCenterDatacenter',
                     validation: { required: true }
                   },
+
+                    overridepublictraffic:{
+                     label:'Override Public-Traffic',
+                     isBoolean:true,
+                     isHidden:true,
+                     isChecked:false
+                  },
+
+
+                  vSwitchPublicType:{
+                       label: 'Public Traffic vSwitch Type',
+                        select: function(args) {
+                              var items = []
+
+                              //items.push({id: "" , description:" " });
+
+                              items.push({id: "vmwaresvs", description: "VMware vNetwork Standard Virtual Switch"});
+                              items.push({id: "vmwaredvs", description: "VMware vNetwork Distributed Virtual Switch"});
+                           
+                              items.push({ id:" nexusdvs" , description: "Cisco Nexus 1000v Distributed Virtual Switch"});
+                              args.response.success({data: items});
+                           },
+                        isHidden:true,
+                        dependsOn:'overridepublictraffic'
+                       },
+
+                   vSwitchPublicName:{
+                        label:'Public Traffic vSwitch Name',
+                        dependsOn:'overridepublictraffic',
+                        isHidden:true
+
+
+                     },
+                 overrideguesttraffic:{
+                     label:'Override Guest-Traffic',
+                     isBoolean:true,
+                     isHidden:true,
+                     isChecked:false
+                  },
+
+
+ 
+                 vSwitchGuestType:{
+                        label: 'Guest Traffic vSwitch Type',
+                        select: function(args) {
+                        var items = []
+                        // items.push({id: "" , description:" " });
+                        items.push({id: "vmwaresvs", description: "VMware vNetwork Standard Virtual Switch"});
+                        items.push({id: "vmwaredvs", description: "VMware vNetwork Distributed Virtual Switch"});
+			items.push({ id:" nexusdvs" , description: "Cisco Nexus 1000v Distributed Virtual Switch"});
+                        args.response.success({data: items});
+                        },
+                        isHidden:true,
+                        dependsOn:'overrideguesttraffic'
+
+                        },
+                   vSwitchGuestName:{
+                        label:' Guest Traffic vSwitch Name',
+                        dependsOn:'overrideguesttraffic',
+                        isHidden:true
+
+
+                     },
+
                   vsmipaddress: {
                     label: 'Nexus 1000v IP Address',
                     validation: { required: true },
@@ -7540,7 +7654,20 @@
                 if(args.data.hypervisor == "VMware") {
                   array1.push("&username=" + todb(args.data.vCenterUsername));
                   array1.push("&password=" + todb(args.data.vCenterPassword));
+            
+                 if(args.data.vSwitchPublicType != "")
+                  array1.push("&publicvswitchtype=" + args.data.vSwitchPublicType);
 
+                 if(args.data.vSwitchPublicName != "")
+                  array1.push("&publicvswitchname=" +args.data.vSwitchPublicName);
+                 
+                  //vSwitch Guest Type
+                 if(args.data.vSwitchGuestType !=  "")
+                  array1.push("&guestvswitchtype=" + args.data.vSwitchGuestType);
+
+                
+                 if(args.data.vSwitchGuestName !="")
+                  array1.push("&guestvswitchname=" +args.data.vSwitchGuestName);
                   if (args.data.vsmipaddress) {
                     array1.push('&vsmipaddress=' + args.data.vsmipaddress);
                     array1.push('&vsmusername=' + args.data.vsmusername);
@@ -8073,9 +8200,9 @@
                           var pods = json.listpodsresponse.pod;
                           var items = [];
                           $(pods).each(function() {
-														if(("pods" in args.context) && (this.id == args.context.pods[0].id))
-													    items.unshift({id: this.id, description: this.name});
-													  else
+			if(("pods" in args.context) && (this.id == args.context.pods[0].id))
+			    items.unshift({id: this.id, description: this.name});
+	       	  	else
                               items.push({id: this.id, description: this.name});
                           });
                           args.response.success({data: items});
@@ -8098,9 +8225,9 @@
                           clusterObjs = json.listclustersresponse.cluster;
                           var items = [];
                           $(clusterObjs).each(function() {
-													  if(("clusters" in args.context) && (this.id == args.context.clusters[0].id))
-													    items.unshift({id: this.id, description: this.name});
-													  else
+			  if(("clusters" in args.context) && (this.id == args.context.clusters[0].id))
+			    items.unshift({id: this.id, description: this.name});
+			  else
                               items.push({id: this.id, description: this.name});
                           });
                           args.response.success({data: items});
