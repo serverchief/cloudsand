@@ -627,7 +627,6 @@ public class VmwareHelper {
     	Random random = new Random();
     	return candidates.get(random.nextInt(candidates.size()));
 	}
-
     public static boolean isDvPortGroup(ManagedObjectReference networkMor) {
          return "DistributedVirtualPortgroup".equalsIgnoreCase(networkMor.getType());
     }

@@ -470,7 +470,6 @@ public class DatacenterMO extends BaseMO {
                 + dvSwitchUuid);
         return dvPortBacking;
     }
-
     public ManagedObjectReference getDvSwitchMor(String dvSwitchName) throws Exception {
         ManagedObjectReference dvSwitchMor = null;
         ManagedObjectReference networkFolderMor = null;
