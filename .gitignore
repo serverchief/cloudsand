@@ -74,3 +74,5 @@ docs/runbook/tmp
 docs/runbook/publish
 .project
 Gemfile.lock
+vmops*
+dvs-*
