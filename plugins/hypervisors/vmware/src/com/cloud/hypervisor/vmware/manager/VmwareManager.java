@@ -63,13 +63,7 @@ public interface VmwareManager {
     boolean beginExclusiveOperation(int timeOutSeconds);
     void endExclusiveOperation();
 
-    boolean getNexusVSwitchGlobalParameter();
-
     Map<String, String> getNexusVSMCredentialsByClusterId(Long clusterId);
 
     String getPrivateVSwitchName(long dcId, HypervisorType hypervisorType);
-
-    String getPublicVSwitchName(long dcId, HypervisorType hypervisorType);
-
-    String getGuestVSwitchName(long dcId, HypervisorType hypervisorType);
 }
