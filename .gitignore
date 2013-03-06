@@ -76,3 +76,6 @@ docs/runbook/publish
 Gemfile.lock
 vmops*
 dvs-*
+deploydb.status
+jerry-run.txt
+
