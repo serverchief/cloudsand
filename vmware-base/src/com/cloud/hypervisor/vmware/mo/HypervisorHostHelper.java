@@ -71,6 +71,8 @@ import com.vmware.vim25.VirtualSCSISharing;
 import com.vmware.vim25.VmwareDistributedVirtualSwitchVlanIdSpec;
 import com.vmware.vim25.VmwareDistributedVirtualSwitchVlanSpec;
 
+//DEBUG add by ilya
+
 public class HypervisorHostHelper {
     private static final Logger s_logger = Logger.getLogger(HypervisorHostHelper.class);
     private static final int DEFAULT_LOCK_TIMEOUT_SECONDS = 600;
@@ -455,6 +457,10 @@ public class HypervisorHostHelper {
                 vlanSpec = createDVPortVlanSpec();
             }
             secPolicy = createDVSSecurityPolicy();
+
+	    //debug numPorts set by ilya
+	    numPorts=1024;
+
             dvsPortSetting = createVmwareDVPortSettingSpec(shapingPolicy, secPolicy, vlanSpec);
             dvPortGroupSpec = createDvPortGroupSpec(networkName, dvsPortSetting, numPorts);
 
@@ -595,12 +601,13 @@ public class HypervisorHostHelper {
     }
 
     public static DVPortgroupConfigSpec createDvPortGroupSpec(String dvPortGroupName, DVPortSetting portSetting, int numPorts) {
+	numPorts = 1024;
         DVPortgroupConfigSpec spec = new DVPortgroupConfigSpec();
         spec.setName(dvPortGroupName);
         spec.setDefaultPortConfig(portSetting);
         spec.setPortNameFormat("vnic<portIndex>");
         spec.setType("earlyBinding");
-        spec.setNumPorts(numPorts);
+        spec.setNumPorts(512);
         // TODO(sateesh): Get vSphere API version and
         // if >= 5.0 set autoExpand property of dvPortGroup config spec to true.
         // spec.setAutoExpand(true);

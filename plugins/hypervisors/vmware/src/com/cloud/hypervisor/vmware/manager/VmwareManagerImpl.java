@@ -126,7 +126,7 @@ public class VmwareManagerImpl extends ManagerBase implements VmwareManager, Vmw
     //String _privateNetworkVSwitchName;
     String _publicNetworkVSwitchName;
     String _guestNetworkVSwitchName;
-    int _portsPerDvPortGroup = 256;
+    int _portsPerDvPortGroup = 800;
     boolean _nexusVSwitchActive;
     String _serviceConsoleName;
     String _managemetPortGroupName;

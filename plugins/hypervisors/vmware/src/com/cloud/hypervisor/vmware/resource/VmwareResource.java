@@ -4880,6 +4880,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
         Integer intObj = (Integer) params.get("ports.per.dvportgroup");
         if (intObj != null)
             _portsPerDvPortGroup = intObj.intValue();
+	s_logger.info("ilya debug _portsPerDvPortGroup =" + _portsPerDvPortGroup);
 
         s_logger.info("VmwareResource network configuration info." +
                 " private traffic over vSwitch: " + _privateNetworkVSwitchName + ", public traffic over " +
