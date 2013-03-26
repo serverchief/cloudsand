@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -140,11 +140,11 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "MD5 checksum. (Optional) Use the hash that you created in step 1."
+msgid "MD5 checksum. (Optional) Use the hash that you created in step <xref linkend=\"optional-hash\" />."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Wait until the status of the volume shows that the upload is complete. Click Instances - Volumes, find the name you specified in step 5, and make sure the status is Uploaded."
+msgid "Wait until the status of the volume shows that the upload is complete. Click Instances - Volumes, find the name you specified in step <xref linkend=\"volume-name\" />, and make sure the status is Uploaded."
 msgstr ""
 

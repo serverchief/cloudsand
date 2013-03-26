@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:12:00\n"
-"PO-Revision-Date: 2013-02-02T20:12:00\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -55,12 +55,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the next dialog, enter the source NAT IP from step 1 and give the connection a name. Check Don't connect now."
+msgid "In the next dialog, enter the source NAT IP from step <xref linkend=\"source-nat\" /> and give the connection a name. Check Don't connect now."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the next dialog, enter the user name and password selected in step 1."
+msgid "In the next dialog, enter the user name and password selected in step <xref linkend=\"source-nat\" />."
 msgstr ""
 
 #. Tag: para
@@ -80,7 +80,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In Type of VPN, choose L2TP IPsec VPN, then click IPsec settings. Select Use preshared key. Enter the preshared key from Step 1."
+msgid "In Type of VPN, choose L2TP IPsec VPN, then click IPsec settings. Select Use preshared key. Enter the preshared key from Step <xref linkend=\"source-nat\" />."
 msgstr ""
 
 #. Tag: para
@@ -90,6 +90,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Enter the user name and password from Step 1."
+msgid "Enter the user name and password from Step <xref linkend=\"source-nat\" />."
 msgstr ""
 

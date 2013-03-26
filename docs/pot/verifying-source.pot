@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:12:00\n"
-"PO-Revision-Date: 2013-02-02T20:12:00\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "You next need to import those keys, which you can do by running the following command:"
+msgid "You next need to import those keys, which you can do by running:"
 msgstr ""
 
 #. Tag: programlisting

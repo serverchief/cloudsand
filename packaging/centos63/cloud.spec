@@ -78,7 +78,8 @@ Requires: mkisofs
 Requires: MySQL-python
 Requires: python-paramiko
 Requires: ipmitool
-Requires: %{name}-common = %{_ver} 
+Requires: %{name}-common = %{_ver}
+Requires: %{name}-awsapi = %{_ver} 
 Obsoletes: cloud-client < 4.1.0
 Obsoletes: cloud-client-ui < 4.1.0
 Obsoletes: cloud-daemonize < 4.1.0
@@ -108,6 +109,7 @@ The Apache CloudStack files shared between agent and management server
 %package agent
 Summary: CloudStack Agent for KVM hypervisors
 Requires: java >= 1.6.0
+Requires: jna >= 3.2.4
 Requires: %{name}-common = %{_ver}
 Requires: libvirt
 Requires: bridge-utils
@@ -143,6 +145,8 @@ Apache CloudStack command line interface
 %package awsapi
 Summary: Apache CloudStack AWS API compatibility wrapper
 Requires: %{name}-management = %{_ver}
+Obsoletes: cloud-aws-api < 4.1.0
+Provides: cloud-aws-api
 %description awsapi
 Apache Cloudstack AWS API compatibility wrapper
 
@@ -161,7 +165,14 @@ echo Doing CloudStack build
 cp packaging/centos63/replace.properties build/replace.properties
 echo VERSION=%{_maventag} >> build/replace.properties
 echo PACKAGE=%{name} >> build/replace.properties
-mvn -P awsapi package -Dsystemvm
+
+if [ "%{_ossnoss}" == "NONOSS" -o "%{_ossnoss}" == "nonoss" ] ; then
+    echo "Executing mvn packaging for NONOSS ..."
+	mvn -P awsapi,systemvm -Dnonoss package
+else
+    echo "Executing mvn packaging for OSS ..."
+	mvn -P awsapi package -Dsystemvm
+fi
 
 %install
 [ ${RPM_BUILD_ROOT} != "/" ] && rm -rf ${RPM_BUILD_ROOT}
@@ -278,22 +289,43 @@ cp -r cloud-cli/cloudtool ${RPM_BUILD_ROOT}%{_libdir}/python2.6/site-packages/
 install cloud-cli/cloudapis/cloud.py ${RPM_BUILD_ROOT}%{_libdir}/python2.6/site-packages/cloudapis.py
 
 # AWS API
-mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/bridge
+mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/setup
-cp -r awsapi/target/cloud-awsapi-%{_maventag}/* ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/bridge
+cp -r awsapi/target/cloud-awsapi-%{_maventag}/* ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi
 install -D awsapi-setup/setup/cloud-setup-bridge ${RPM_BUILD_ROOT}%{_bindir}/cloudstack-setup-bridge
 install -D awsapi-setup/setup/cloudstack-aws-api-register ${RPM_BUILD_ROOT}%{_bindir}/cloudstack-aws-api-register
 cp -r awsapi-setup/db/mysql/* ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/setup
 
+for name in applicationContext.xml cloud-bridge.properties commons-logging.properties ; do
+  mv ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/$name \
+    ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}/management/$name
+done
+
+install -D ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/ec2-service.properties ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}/management/ec2-service.properties
+
+#Don't package the below for AWS API
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/com
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/db.properties
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/LICENSE.txt
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/log4j.properties
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/log4j-vmops.xml
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/META-INF
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/NOTICE.txt
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/org
+rm -rf ${RPM_BUILD_ROOT}%{_datadir}/%{name}-bridge/webapps/awsapi/WEB-INF/classes/services.xml
+
 %clean
 [ ${RPM_BUILD_ROOT} != "/" ] && rm -rf ${RPM_BUILD_ROOT}
 
+%pre awsapi
+id cloud > /dev/null 2>&1 || /usr/sbin/useradd -M -c "CloudStack unprivileged user" \
+     -r -s /bin/sh -d %{_localstatedir}/cloudstack/management cloud|| true
 
 %preun management
-/sbin/service cloud-management stop || true
+/sbin/service cloudstack-management stop || true
 if [ "$1" == "0" ] ; then
-    /sbin/chkconfig --del cloud-management  > /dev/null 2>&1 || true
-    /sbin/service cloud-management stop > /dev/null 2>&1 || true
+    /sbin/chkconfig --del cloudstack-management > /dev/null 2>&1 || true
+    /sbin/service cloudstack-management stop > /dev/null 2>&1 || true
 fi
 
 %pre management
@@ -310,8 +342,12 @@ rm -rf %{_localstatedir}/cache/cloud
 
 %post management
 if [ "$1" == "1" ] ; then
-    /sbin/chkconfig --add cloud-management > /dev/null 2>&1 || true
-    /sbin/chkconfig --level 345 cloud-management on > /dev/null 2>&1 || true
+    /sbin/chkconfig --add cloudstack-management > /dev/null 2>&1 || true
+    /sbin/chkconfig --level 345 cloudstack-management on > /dev/null 2>&1 || true
+fi
+
+if [ -d "%{_datadir}/%{name}-management" ] ; then
+   ln -s %{_datadir}/%{name}-bridge/webapps %{_datadir}/%{name}-management/webapps7080
 fi
 
 if [ ! -f %{_datadir}/cloudstack-common/scripts/vm/hypervisor/xenserver/vhd-util ] ; then
@@ -321,18 +357,19 @@ fi
 
 # change cloud user's home to 4.1+ version if needed. Would do this via 'usermod', but it
 # requires that cloud user not be in use, so RPM could not be installed while management is running
-getent passwd cloud | grep -q /var/lib/cloud && sed -i 's/\/var\/lib\/cloud\/management/\/var\/cloudstack\/management/g' /etc/passwd
-
-%post awsapi
-if [ -d "%{_datadir}/%{name}-management" ] ; then
-   ln -s %{_datadir}/%{name}-bridge/webapps %{_datadir}/%{name}-management/webapps7080
+if getent passwd cloud | grep -q /var/lib/cloud; then 
+    sed -i 's/\/var\/lib\/cloud\/management/\/var\/cloudstack\/management/g' /etc/passwd
 fi
+
+
+#%post awsapi
+#if [ -d "%{_datadir}/%{name}-management" ] ; then
+#   ln -s %{_datadir}/%{name}-bridge/webapps %{_datadir}/%{name}-management/webapps7080
+#fi
 
 #No default permission as the permission setup is complex
 %files management
 %defattr(-,root,root,-)
-%doc LICENSE
-%doc NOTICE
 %dir %attr(0770,root,cloud) %{_sysconfdir}/%{name}/management/Catalina
 %dir %attr(0770,root,cloud) %{_sysconfdir}/%{name}/management/Catalina/localhost
 %dir %attr(0770,root,cloud) %{_sysconfdir}/%{name}/management/Catalina/localhost/client
@@ -360,6 +397,10 @@ fi
 %config(noreplace) %{_sysconfdir}/%{name}/management/tomcat-users.xml
 %config(noreplace) %{_sysconfdir}/%{name}/management/web.xml
 %config(noreplace) %{_sysconfdir}/%{name}/management/environment.properties
+%config(noreplace) %{_sysconfdir}/%{name}/management/applicationContext.xml
+%config(noreplace) %{_sysconfdir}/%{name}/management/cloud-bridge.properties
+%config(noreplace) %{_sysconfdir}/%{name}/management/commons-logging.properties
+%config(noreplace) %{_sysconfdir}/%{name}/management/ec2-service.properties
 %attr(0755,root,root) %{_initrddir}/%{name}-management
 %attr(0755,root,root) %{_bindir}/%{name}-setup-management
 %attr(0755,root,root) %{_bindir}/%{name}-update-xenserver-licenses
@@ -433,7 +474,7 @@ fi
 
 %files awsapi
 %defattr(0644,cloud,cloud,0755)
-%{_datadir}/%{name}-bridge/webapps/bridge
+%{_datadir}/%{name}-bridge/webapps/awsapi
 %attr(0644,root,root) %{_datadir}/%{name}-bridge/setup/*
 %attr(0755,root,root) %{_bindir}/cloudstack-aws-api-register
 %attr(0755,root,root) %{_bindir}/cloudstack-setup-bridge

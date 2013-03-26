@@ -1639,6 +1639,11 @@ public class NetworkModelImpl extends ManagerBase implements NetworkModel {
         if (usedIps.size() != 0) {
             allPossibleIps.removeAll(usedIps);
         }
+
+        String gateway = network.getGateway();
+        if ((gateway != null) && (allPossibleIps.contains(NetUtils.ip2Long(gateway))))
+            allPossibleIps.remove(NetUtils.ip2Long(gateway));
+
         return allPossibleIps;
     }
 
@@ -1967,4 +1972,21 @@ public class NetworkModelImpl extends ManagerBase implements NetworkModel {
             }
         }
     }
+
+	@Override
+	public String getStartIpv6Address(long networkId) {
+    	List<VlanVO> vlans = _vlanDao.listVlansByNetworkId(networkId);
+    	if (vlans == null) {
+    		return null;
+    	}
+    	String startIpv6 = null;
+    	// Get the start ip of first create vlan(not the lowest, because if you add a lower vlan, lowest vlan would change)
+    	for (Vlan vlan : vlans) {
+    		if (vlan.getIp6Range() != null) {
+    			startIpv6 = vlan.getIp6Range().split("-")[0];
+    			break;
+    		}
+    	}
+		return startIpv6;
+	}
 }

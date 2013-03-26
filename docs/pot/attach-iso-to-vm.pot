@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:57\n"
-"PO-Revision-Date: 2013-02-02T20:11:57\n"
+"POT-Creation-Date: 2013-03-19T13:38:02\n"
+"PO-Revision-Date: 2013-03-19T13:38:02\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click the Attach ISO button <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/iso-icon.png\" /> </imageobject> <textobject><phrase>iso.png: Depicts adding an iso image</phrase></textobject> </inlinemediaobject>"
+msgid "Click the Attach ISO button. <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/iso-icon.png\" /> </imageobject> <textobject> <phrase>iso.png: depicts adding an iso image</phrase> </textobject> </inlinemediaobject>"
 msgstr ""
 
 #. Tag: para
@@ -50,6 +50,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click OK"
+msgid "Click OK."
 msgstr ""
 

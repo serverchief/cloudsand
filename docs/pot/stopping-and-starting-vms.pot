@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Any user can access their own virtual machines. The administrator can access all VMs running in the cloud."
+msgid "Once a VM instance is created, you can stop, restart, or delete it as needed. In the &PRODUCT; UI, click Instances, select the VM, and use the Stop, Start, Reboot, and Destroy links."
 msgstr ""
 

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -45,31 +45,6 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Downloading vhd-util"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "This procedure is required only for installations where XenServer is installed on the hypervisor hosts."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Before setting up the Management Server, download vhd-util from <ulink url=\"http://download.cloud.com.s3.amazonaws.com/tools/vhd-util\">vhd-util</ulink>."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "If the Management Server is RHEL or CentOS, copy vhd-util to /usr/lib64/cloud/common/scripts/vm/hypervisor/xenserver."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "If the Management Server is Ubuntu, copy vhd-util to /usr/lib/cloud/common/scripts/vm/hypervisor/xenserver/vhd-util."
-msgstr ""
-
-#. Tag: title
-#, no-c-format
 msgid "Install on CentOS/RHEL"
 msgstr ""
 
@@ -91,5 +66,30 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "apt-get install cloud-client"
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "Downloading vhd-util"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "This procedure is required only for installations where XenServer is installed on the hypervisor hosts."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Before setting up the Management Server, download vhd-util from <ulink url=\"http://download.cloud.com.s3.amazonaws.com/tools/vhd-util\">vhd-util</ulink>."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If the Management Server is RHEL or CentOS, copy vhd-util to /usr/lib64/cloud/common/scripts/vm/hypervisor/xenserver."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "If the Management Server is Ubuntu, copy vhd-util to /usr/lib/cloud/common/scripts/vm/hypervisor/xenserver."
 msgstr ""
 

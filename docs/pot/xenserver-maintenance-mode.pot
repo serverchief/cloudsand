@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:12:00\n"
-"PO-Revision-Date: 2013-02-02T20:12:00\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -50,12 +50,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "On the Server menu, click Enter Maintenance Mode"
+msgid "On the Server menu, click Enter Maintenance Mode."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click Enter Maintenance Mode"
+msgid "Click Enter Maintenance Mode."
 msgstr ""
 
 #. Tag: para
@@ -75,11 +75,11 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "On the Server menu, click Exit Maintenance Mode"
+msgid "On the Server menu, click Exit Maintenance Mode."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click Exit Maintenance Mode"
+msgid "Click Exit Maintenance Mode."
 msgstr ""
 

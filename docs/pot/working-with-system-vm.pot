@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:12:00\n"
-"PO-Revision-Date: 2013-02-02T20:12:00\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -31,5 +31,10 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "&PRODUCT; uses several types of system virtual machines to perform tasks in the cloud. In general &PRODUCT; manages these system VMs and creates, starts, and stops them as needed based on scale and immediate needs. However, the administrator should be aware of them and their roles to assist in debugging issues."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "You can configure the system.vm.random.password parameter to create a random system VM password to ensure higher security. If you reset the value for system.vm.random.password to true and restart the Management Server, a random password is generated and stored encrypted in the database. You can view the decrypted password under the system.vm.password global parameter on the &PRODUCT; UI or by calling the listConfigurations API."
 msgstr ""
 

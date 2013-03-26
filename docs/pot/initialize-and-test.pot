@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -80,12 +80,17 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click Launch VM. Your VM will be created and started. It might take some time to download the template and complete the VM startup. You can watch the VM’s progress in the Instances screen."
+msgid "Click Launch VM. Your VM will be created and started. It might take some time to download the template and complete the VM startup. You can watch the VMâ€™s progress in the Instances screen."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
 msgid "To use the VM, click the View Console button. <inlinemediaobject> <imageobject><imagedata fileref=\"./images/console-icon.png\" /></imageobject> <textobject><phrase>ConsoleButton.png: button to launch a console</phrase></textobject> </inlinemediaobject>"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "For more information about using VMs, including instructions for how to allow incoming network traffic to the VM, start, stop, and delete VMs, and move a VM from one host to another, see Working With Virtual Machines in the Administratorâ€™s Guide."
 msgstr ""
 
 #. Tag: para

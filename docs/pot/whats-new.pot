@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:12:00\n"
-"PO-Revision-Date: 2013-02-02T20:12:00\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The following describes any new major features of each &PRODUCT; version as it applies to API usage."
+msgstr ""
+
+#. Tag: title
+#, no-c-format
+msgid "What's New in the API for 4.1"
 msgstr ""
 
 #. Tag: title

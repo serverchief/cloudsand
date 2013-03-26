@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Choose an existing IP address or acquire a new IP address. (See Acquiring a New IP Address on page 73.) Click the name of the IP address in the list."
+msgid "Choose an existing IP address or acquire a new IP address. See <xref linkend=\"acquire-new-ip-address\" />. Click the name of the IP address in the list."
 msgstr ""
 
 #. Tag: para
@@ -105,7 +105,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"bold\">Protocol</emphasis>. The communication protocol in use between the two ports."
+msgid "<emphasis role=\"bold\">Protocol</emphasis>. The communication protocol in use between the two ports"
 msgstr ""
 
 #. Tag: para

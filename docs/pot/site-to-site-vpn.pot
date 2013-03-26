@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -81,5 +81,10 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Create VPN connection from the VPC VPN gateway to the customer VPN gateway."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Appropriate events are generated on the &PRODUCT; UI when status of a Site-to-Site VPN connection changes from connected to disconnected, or vice versa. Currently no events are generated when establishing a VPN connection fails or pending."
 msgstr ""
 

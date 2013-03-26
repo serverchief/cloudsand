@@ -25,6 +25,8 @@ import os
 import xml.dom.minidom
 from optparse import OptionParser, OptionGroup, OptParseError, BadOptionError, OptionError, OptionConflictError, OptionValueError
 import re
+import traceback
+
 iptables = Command("iptables")
 bash = Command("/bin/bash")
 virsh = Command("virsh")
@@ -342,7 +344,7 @@ def post_default_network_rules(vm_name, vm_id, vm_ip, vm_mac, vif, brname, dhcpS
 def delete_rules_for_vm_in_bridge_firewall_chain(vmName):
     vm_name = vmName
     if vm_name.startswith('i-') or vm_name.startswith('r-'):
-        vm_name =  '-'.join(vm_name.split('-')[:-1])
+	vm_name = '-'.join(vm_name.split('-')[:-1]) + "-def"
     
     vmchain = vm_name
     
@@ -620,10 +622,14 @@ def add_network_rules(vm_name, vm_id, vm_ip, signature, seqno, vmMac, rules, vif
         lines = rules.split(';')[:-1]
 
     logging.debug("    programming network rules for  IP: " + vm_ip + " vmname=" + vm_name)
-    vmchain = vm_name
-    execute("iptables -F " + vmchain)
-    egress_vmchain = egress_chain_name(vm_name)
-    execute("iptables -F " + egress_vmchain)
+    try:
+      vmchain = vm_name
+      execute("iptables -F " + vmchain)
+      egress_vmchain = egress_chain_name(vm_name)
+      execute("iptables -F " + egress_vmchain)
+    except: 
+      logging.debug("Error flushing iptables rules for " + vmchain + ".  Presuming firewall rules deleted, re-initializing." )
+      default_network_rules(vm_name, vm_id, vm_ip, vmMac, vif, brname)
     egressrule = 0
     for line in lines:
 	
@@ -692,7 +698,8 @@ def add_network_rules(vm_name, vm_id, vm_ip, signature, seqno, vmMac, rules, vif
     
     return 'true'
   except:
-    logging.debug("Failed to network rule !: " + sys.exc_type)
+    exceptionText = traceback.format_exc()
+    logging.debug("Failed to network rule !: " + exceptionText)
 
 def getVifs(vmName):
     vifs = []
@@ -797,7 +804,7 @@ def addFWFramework(brname):
         return False
             
 if __name__ == '__main__':
-    logging.basicConfig(filename="/var/log/cloud/security_group.log", format="%(asctime)s - %(message)s", level=logging.DEBUG)
+    logging.basicConfig(filename="/var/log/cloudstack/agent/security_group.log", format="%(asctime)s - %(message)s", level=logging.DEBUG)
     parser = OptionParser()
     parser.add_option("--vmname", dest="vmName")
     parser.add_option("--vmip", dest="vmIP")

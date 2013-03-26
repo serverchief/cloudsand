@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Virtual machines are usually created from a template. Users can also create blank virtual machines. A blank virtual machine is a virtual machine without an OS template. Users can attach an ISO file and install the OS from the CD/DVD-ROM."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "You can create a VM without starting it. You can determine whether the VM needs to be started as part of the VM deployment. A request parameter, startVM, in the deployVm API provides this feature. For more information, see the Developer's Guide"
 msgstr ""
 
 #. Tag: para
@@ -55,7 +60,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Select a template, then follow the steps in the wizard. (For more information about how the templates came to be in this list, see Working with Templates."
+msgid "Select a zone."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Select a template, then follow the steps in the wizard. For more information about how the templates came to be in this list, see <xref linkend=\"working-with-templates\" />."
 msgstr ""
 
 #. Tag: para
@@ -71,11 +81,6 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "For security reason, the internal name of the VM is visible only to the root admin."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Starting with v3.0.3, you can create a VM without starting it. You can determine whether the VM needs to be started as part of the VM deployment. A new request parameter, startVM, is introduced in the deployVm API to support this feature. For more information, see the Developer's Guide"
 msgstr ""
 
 #. Tag: para

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:57\n"
-"PO-Revision-Date: 2013-02-02T20:11:57\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -434,7 +434,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Repeat step 2 on every host."
+msgid "Repeat step <xref linkend=\"rescan-scsi\" /> on every host."
 msgstr ""
 
 #. Tag: para
@@ -461,7 +461,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Repeat step 4 on every host."
+msgid "Repeat step <xref linkend=\"verify-scsi\" /> on every host."
 msgstr ""
 
 #. Tag: para

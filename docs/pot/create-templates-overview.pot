@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "There are other ways to add templates to &PRODUCT;. For example, you can take a snapshot of the VM's volume and create a template from the snapshot, or import a VHD from another system into &PRODUCT;"
+msgid "There are other ways to add templates to &PRODUCT;. For example, you can take a snapshot of the VM's volume and create a template from the snapshot, or import a VHD from another system into &PRODUCT;."
 msgstr ""
 
 #. Tag: para

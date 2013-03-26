@@ -1728,7 +1728,11 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
         	args += " -6 " + cmd.getVmIp6Address();
         	args += " -u " + cmd.getDuid();
         }
-
+        
+        if (!cmd.isDefault()) {
+        	args += " -N";
+        }
+        
         if (s_logger.isDebugEnabled()) {
             s_logger.debug("Run command on domR " + cmd.getAccessDetail(NetworkElementCommand.ROUTER_IP) + ", /root/edithosts.sh " + args);
         }
@@ -4930,7 +4934,7 @@ public class VmwareResource implements StoragePoolResource, ServerResource, Vmwa
                 boolean bRefresh = false;
                 if(firewallMo != null) {
                     HostFirewallInfo firewallInfo = firewallMo.getFirewallInfo();
-                    if(firewallInfo != null) {
+                    if(firewallInfo != null && firewallInfo.getRuleset() != null) {
                         for(HostFirewallRuleset rule : firewallInfo.getRuleset()) {
                             if("vncServer".equalsIgnoreCase(rule.getKey())) {
                                 bRefresh = true;

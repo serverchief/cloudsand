@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -35,22 +35,42 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The minimum bootstrapped prerequisites for building &PRODUCT; includes the following:"
+msgid "You will need, at a minimum, the following to compile &PRODUCT;:"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "ant"
+msgid "Maven (version 3)"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "maven (version 3)"
+msgid "Java (OpenJDK 1.6 or Java 7/OpenJDK 1.7)"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Java (Java 6/OpenJDK 1.6)"
+msgid "Apache Web Services Common Utilities (ws-commons-util)"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "MySQL"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "MySQLdb (provides Python database API)"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "Tomcat 6 (not 6.0.35)"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "genisoimage"
 msgstr ""
 
 #. Tag: para

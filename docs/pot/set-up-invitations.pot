@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -45,17 +45,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the search box, type project and click the search button."
-msgstr ""
-
-#. Tag: para
-#, no-c-format
 msgid "In the search box, type project and click the search button.<inlinemediaobject> <imageobject> <imagedata fileref=\"./images/search-button.png\" /> </imageobject> <textobject><phrase>searchbutton.png: Searches projects</phrase></textobject> </inlinemediaobject>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the search results, you will see a few other parameters you need to set to control how invitations behave. The table below shows global configuration parameters related to project invitations. Click the edit button to set each parameter"
+msgid "In the search results, you can see a few other parameters you need to set to control how invitations behave. The table below shows global configuration parameters related to project invitations. Click the edit button to set each parameter."
 msgstr ""
 
 #. Tag: para
@@ -150,7 +145,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Restart the Management Server"
+msgid "Restart the Management Server:"
 msgstr ""
 
 #. Tag: programlisting

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "usage.stats.job.exec.time = 00:15    \n"
+msgid "usage.stats.job.exec.time = 00:15	\n"
 "usage.execution.timezone = PST\n"
 "usage.aggregation.timezone = GMT\n"
 "                        "
@@ -165,7 +165,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "There is special handling for the case of 1440 (once per day). In this case the Usage Server does not necessarily process all records since Usage was last run. &PRODUCT; assumes that you require processing once per day for the previous, complete day’s records. For example, if the current day is October 7, then it is assumed you would like to process records for October 6, from midnight to midnight. &PRODUCT; assumes this \"midnight to midnight\" is relative to the usage.execution.timezone."
+msgid "There is special handling for the case of 1440 (once per day). In this case the Usage Server does not necessarily process all records since Usage was last run. &PRODUCT; assumes that you require processing once per day for the previous, complete day’s records. For example, if the current day is October 7, then it is assumed you would like to process records for October 6, from midnight to midnight. &PRODUCT; assumes this “midnight to midnight” is relative to the usage.execution.timezone."
 msgstr ""
 
 #. Tag: para
@@ -180,7 +180,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The time when the Usage Server processing will start. It is specified in 24-hour format (HH:MM) in the time zone of the server, which should be GMT. For example, to start the Usage job at 10:30 GMT, enter \"10:30\"."
+msgid "The time when the Usage Server processing will start. It is specified in 24-hour format (HH:MM) in the time zone of the server, which should be GMT. For example, to start the Usage job at 10:30 GMT, enter “10:30”."
 msgstr ""
 
 #. Tag: para
@@ -225,6 +225,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Because the special value 1440 has been used for usage.stats.job.aggregation.range, the Usage Server will ignore the data between midnight and 2 AM. That data will be included in the next day's run"
+msgid "Because the special value 1440 has been used for usage.stats.job.aggregation.range, the Usage Server will ignore the data between midnight and 2 AM. That data will be included in the next day's run."
 msgstr ""
 

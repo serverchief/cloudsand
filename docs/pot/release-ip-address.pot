@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr ""
 #. Tag: title
 #, no-c-format
 msgid "Releasing an IP Address"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "When the last rule for an IP address is removed, you can release that IP address. The IP address still belongs to the VPC; however, it can be picked up for any guest network again."
 msgstr ""
 
 #. Tag: para
@@ -55,6 +60,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click the Release IP button <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/release-ip-icon.png\" /> </imageobject> <textobject><phrase>ReleaseIPButton.png: button to release an IP</phrase></textobject> </inlinemediaobject>."
+msgid "Click the Release IP button. <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/release-ip-icon.png\" /> </imageobject> <textobject> <phrase>ReleaseIPButton.png: button to release an IP</phrase> </textobject> </inlinemediaobject>"
 msgstr ""
 

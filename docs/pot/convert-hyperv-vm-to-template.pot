@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Check /etc/fstab for any partitions mounted by device name. Change those entries (if any) to mount by LABEL or UUID (get that information with the \"blkid\" command).."
+msgid "Check /etc/fstab for any partitions mounted by device name. Change those entries (if any) to mount by LABEL or UUID. You can get that information with the blkid command."
 msgstr ""
 
 #. Tag: para
@@ -90,7 +90,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Option two"
+msgid "Option two:"
 msgstr ""
 
 #. Tag: para
@@ -105,7 +105,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Name the VM, then click Next, then Convert. A VM should be created"
+msgid "Name the VM, then click Next, then Convert. A VM should be created."
 msgstr ""
 
 #. Tag: para
@@ -125,7 +125,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Prepare the VM as desired. For example, run sysprep on Windows VMs. See <xref linkend=\"create-windows-template\" />"
+msgid "Prepare the VM as desired. For example, run sysprep on Windows VMs. See <xref linkend=\"create-windows-template\" />."
 msgstr ""
 
 #. Tag: para

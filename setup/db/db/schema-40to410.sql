@@ -258,15 +258,10 @@ CREATE TABLE  `cloud`.`region` (
   `id` int unsigned NOT NULL UNIQUE,
   `name` varchar(255) NOT NULL UNIQUE,
   `end_point` varchar(255) NOT NULL,
-  `api_key` varchar(255),
-  `secret_key` varchar(255),
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `cloud`.`region` values ('1','Local','http://localhost:8080/client/api','','');
-ALTER TABLE `cloud`.`account` ADD COLUMN `region_id` int unsigned NOT NULL DEFAULT '1';
-ALTER TABLE `cloud`.`user` ADD COLUMN `region_id` int unsigned NOT NULL DEFAULT '1';
-ALTER TABLE `cloud`.`domain` ADD COLUMN `region_id` int unsigned NOT NULL DEFAULT '1';
+INSERT INTO `cloud`.`region` values ('1','Local','http://localhost:8080/client/');
 
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Account Defaults', 'DEFAULT', 'management-server', 'max.account.cpus', '40', 'The default maximum number of cpu cores that can be used for an account');
 
@@ -577,6 +572,7 @@ CREATE VIEW `cloud`.`user_vm_view` AS
         vpc.id vpc_id,
         vpc.uuid vpc_uuid,
         networks.uuid network_uuid,
+        networks.name network_name,
         networks.traffic_type traffic_type,
         networks.guest_type guest_type,
         user_ip_address.id public_ip_id,
@@ -755,7 +751,7 @@ CREATE VIEW `cloud`.`domain_router_view` AS
             left join
         `cloud`.`networks` ON nics.network_id = networks.id
             left join
-        `cloud`.`vpc` ON networks.vpc_id = vpc.id
+        `cloud`.`vpc` ON domain_router.vpc_id = vpc.id
             left join
         `cloud`.`async_job` ON async_job.instance_id = vm_instance.id
             and async_job.instance_type = 'DomainRouter'
@@ -1679,3 +1675,5 @@ CREATE TABLE `cloud`.`ucs_manager` (
 
 
 SET foreign_key_checks = 1;
+
+UPDATE `cloud`.`configuration` SET value='KVM,XenServer,VMware,Ovm' WHERE name='hypervisor.list';

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -30,12 +30,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "For Windows 2008 R2, you run Windows System Image Manager to create a custom sysprep response XML file. Windows System Image Manager is installed as part of the Windows Automated Installation Kit (AIK). Windows AIK can be downloaded from the Microsoft Download Center at the following location:"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<ulink url=\"http://www.microsoft.com/en-us/download/details.aspx?id=9085\" />Microsoft Download Center."
+msgid "For Windows 2008 R2, you run Windows System Image Manager to create a custom sysprep response XML file. Windows System Image Manager is installed as part of the Windows Automated Installation Kit (AIK). Windows AIK can be downloaded from <ulink url=\"http://www.microsoft.com/en-us/download/details.aspx?id=9085\">Microsoft Download Center</ulink>."
 msgstr ""
 
 #. Tag: para
@@ -45,7 +40,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The steps outlined here are derived from the excellent guide by Charity Shelbourne, originally published at <ulink url=\"http://blogs.technet.com/askcore/archive/2008/10/31/automating-the-oobe-process-during-windows-server-2008-sysprep-mini-setup.aspx\" />Windows Server 2008 Sysprep Mini-Setup"
+msgid "The steps outlined here are derived from the excellent guide by Charity Shelbourne, originally published at <ulink url=\"http://blogs.technet.com/askcore/archive/2008/10/31/automating-the-oobe-process-during-windows-server-2008-sysprep-mini-setup.aspx\">Windows Server 2008 Sysprep Mini-Setup.</ulink>"
 msgstr ""
 
 #. Tag: para
@@ -70,12 +65,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In the Windows Image pane, right click “Select a Windows image or catalog file” to load the install.wim file you just copied."
+msgid "In the Windows Image pane, right click the Select a Windows image or catalog file option to load the install.wim file you just copied."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Select the Windows 2008 R2 Edition"
+msgid "Select the Windows 2008 R2 Edition."
 msgstr ""
 
 #. Tag: para

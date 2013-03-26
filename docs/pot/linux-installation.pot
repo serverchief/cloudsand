@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -40,12 +40,12 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Linux: <ulink url=\"http://cloudstack.org/dl/cloud-set-guest-password\" />"
+msgid "Linux: <ulink url=\" http://cloudstack.org/dl/cloud-set-guest-password \" />"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Windows: <ulink url=\"http://sourceforge.net/projects/cloudstack/files/Password%20Management%20Scripts/CloudInstanceManager.msi/download\" />"
+msgid "Windows: <ulink url=\" http://sourceforge.net/projects/cloudstack/files/Password%20Management%20Scripts/CloudInstanceManager.msi/download \" />"
 msgstr ""
 
 #. Tag: para
@@ -91,7 +91,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "#ln -s /etc/init.d/cloud-set-guest-password /etc/network/if-up/cloud-set-guest-password\n"
-"            #ln -s /etc/init.d/cloud-set-guest-password /etc/network/if-down/cloud-set-guest-password"
+"#ln -s /etc/init.d/cloud-set-guest-password /etc/network/if-down/cloud-set-guest-password"
 msgstr ""
 
 #. Tag: para

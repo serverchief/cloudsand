@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:56\n"
-"PO-Revision-Date: 2013-02-02T20:11:56\n"
+"POT-Creation-Date: 2013-03-19T13:38:02\n"
+"PO-Revision-Date: 2013-03-19T13:38:02\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,11 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"bold\">Stickiness</emphasis>: (Optional) Click Configure and choose the algorithm for the stickiness policy. See Sticky Session Policies for Load Balancer Rules."
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "<emphasis role=\"bold\">AutoScale</emphasis>: Click Configure and complete the AutoScale configuration as explained in <xref linkend=\"autoscale\" />."
 msgstr ""
 
 #. Tag: para

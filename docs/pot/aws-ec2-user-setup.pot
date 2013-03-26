@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:57\n"
-"PO-Revision-Date: 2013-02-02T20:11:57\n"
+"POT-Creation-Date: 2013-03-19T13:38:02\n"
+"PO-Revision-Date: 2013-03-19T13:38:02\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Then execute it, using the parameter values that were obtained in step 1. An example is shown below."
+msgid "Then execute it, using the access and secret keys that were obtained in step <xref linkend=\"obtain-access-secret-keys\" />. An example is shown below."
 msgstr ""
 
 #. Tag: programlisting

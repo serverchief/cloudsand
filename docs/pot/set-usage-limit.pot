@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -41,20 +41,5 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "This section covers the following topics:"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<xref linkend=\"globally-configured-limit\" />Globally Configured Limits"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<xref linkend=\"default-account-resource-limit\" />Default Account Resource Limits"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "<xref linkend=\"per-domain-limits\" />Per Domain Limits"
 msgstr ""
 

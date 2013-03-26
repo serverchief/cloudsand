@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In CloudStack release 4.0.0-incubating this plugin supports the Connectivity service. This service is responsible for creating Layer 2 networks supporting the networks created by Guests. In other words when an tennant creates a new network, instead of the traditional VLAN a logical network will be created by sending the appropriate calls to the Nicira NVP Controller."
+msgid "In &PRODUCT; release 4.0.0-incubating this plugin supports the Connectivity service. This service is responsible for creating Layer 2 networks supporting the networks created by Guests. In other words when an tenant creates a new network, instead of the traditional VLAN a logical network will be created by sending the appropriate calls to the Nicira NVP Controller."
 msgstr ""
 
 #. Tag: para
@@ -40,16 +40,16 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In CloudStack 4.0.0-incubating only the XenServer hypervisor is supported for use in combination with Nicira NVP."
+msgid "In &PRODUCT; 4.0.0-incubating only the XenServer hypervisor is supported for use in combination with Nicira NVP."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In CloudStack 4.1.0-incubating both KVM and XenServer hypervisors are supported."
+msgid "In &PRODUCT; 4.1.0-incubating both KVM and XenServer hypervisors are supported."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "In CloudStack 4.0.0-incubating the UI components for this plugin are not complete, configuration is done by sending commands to the API."
+msgid "In &PRODUCT; 4.0.0-incubating the UI components for this plugin are not complete, configuration is done by sending commands to the API."
 msgstr ""
 

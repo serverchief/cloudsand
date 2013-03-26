@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:57\n"
-"PO-Revision-Date: 2013-02-02T20:11:57\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Making API Requests"
+msgid "Changing the Secondary Storage IP Address"
 msgstr ""
 
 #. Tag: para
@@ -36,18 +36,18 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"        # mysql -p\n"
-"        mysql&gt; use cloud;\n"
-"        mysql&gt; select id from host where type = 'SecondaryStorage';\n"
-"        mysql&gt; update host_details set value = 'nfs://192.168.160.20/export/mike-ss1'\n"
-"          where host_id = HOSTID and name = 'orig.url';\n"
-"        mysql&gt; update host set name = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
-"          = 'SecondaryStorage' and id = #;\n"
-"        mysql&gt; update host set url = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
-"          = 'SecondaryStorage' and id = #;\n"
-"        mysql&gt; update host set guid = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
-"          = 'SecondaryStorage' and id = #;\n"
-"        "
+"		# mysql -p\n"
+"		mysql&gt; use cloud;\n"
+"		mysql&gt; select id from host where type = 'SecondaryStorage';\n"
+"		mysql&gt; update host_details set value = 'nfs://192.168.160.20/export/mike-ss1'\n"
+"  		where host_id = HOSTID and name = 'orig.url';\n"
+"		mysql&gt; update host set name = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
+"  		= 'SecondaryStorage' and id = #;\n"
+"		mysql&gt; update host set url = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
+" 		 = 'SecondaryStorage' and id = #;\n"
+"		mysql&gt; update host set guid = 'nfs://192.168.160.20/export/mike-ss1' where type\n"
+"  		= 'SecondaryStorage' and id = #;\n"
+"		"
 msgstr ""
 
 #. Tag: para

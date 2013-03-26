@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -203,13 +203,19 @@ msgstr ""
 msgid "(Optional) For database_key, substitute the default key that is used to encrypt confidential parameters in the &PRODUCT; database. Default: password. It is highly recommended that you replace this with a more secure value. See <xref linkend=\"about-password-encryption\" />."
 msgstr ""
 
+#. Tag: para
+#, no-c-format
+msgid "(Optional) For management_server_ip, you may explicitly specify cluster management server node IP. If not specified, the local IP address will be used."
+msgstr ""
+
 #. Tag: programlisting
 #, no-c-format
 msgid "cloud-setup-databases cloud:&lt;dbpassword&gt;@&lt;ip address mysql server&gt; \\\n"
 "--deploy-as=root:&lt;password&gt; \\\n"
 "-e &lt;encryption_type&gt; \\\n"
 "-m &lt;management_server_key&gt; \\\n"
-"-k &lt;database_key&gt;"
+"-k &lt;database_key&gt; \\\n"
+"-i &lt;management_server_ip&gt;"
 msgstr ""
 
 #. Tag: para

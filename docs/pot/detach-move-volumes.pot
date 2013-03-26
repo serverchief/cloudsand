@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #. Tag: title
 #, no-c-format
-msgid "Attaching a Volume"
+msgid "Detaching and Moving Volumes"
 msgstr ""
 
 #. Tag: para
@@ -55,11 +55,11 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click the name of the volume you want to detach, then click the Detach Disk button <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/detach-disk-icon.png\" /> </imageobject> <textobject><phrase>DetachDiskButton.png: button to detach a volume</phrase></textobject> </inlinemediaobject>"
+msgid "Click the name of the volume you want to detach, then click the Detach Disk button. <inlinemediaobject> <imageobject> <imagedata fileref=\"./images/detach-disk-icon.png\" /> </imageobject> <textobject> <phrase>DetachDiskButton.png: button to detach a volume</phrase> </textobject> </inlinemediaobject>"
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "To move the volume to another VM, follow the steps in Attaching a Volume <xref linkend=\"attaching-volume\" />."
+msgid "To move the volume to another VM, follow the steps in <xref linkend=\"attaching-volume\" />."
 msgstr ""
 

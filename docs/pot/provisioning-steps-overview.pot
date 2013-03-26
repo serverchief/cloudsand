@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,6 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "To provision the cloud infrastructure, or to scale it up at any time, follow these procedures:"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "Change the root password. See <xref linkend=\"changing-root-password\" />."
 msgstr ""
 
 #. Tag: para

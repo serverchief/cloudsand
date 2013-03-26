@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:58\n"
-"PO-Revision-Date: 2013-02-02T20:11:58\n"
+"POT-Creation-Date: 2013-03-19T13:38:03\n"
+"PO-Revision-Date: 2013-03-19T13:38:03\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"bold\">Password Enabled</emphasis>. Choose Yes if your template has the &PRODUCT; password change script installed. See Adding Password Management to Your Templates."
+msgid "<emphasis role=\"bold\">Password Enabled</emphasis>. Choose Yes if your template has the &PRODUCT; password change script installed. See <xref linkend=\"add-password-management-to-templates\" />."
 msgstr ""
 
 #. Tag: para
@@ -100,6 +100,6 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "The new template will be visible in the Templates section when the template creation process has been completed. The template is then available when creating a new VM"
+msgid "The new template will be visible in the Templates section when the template creation process has been completed. The template is then available when creating a new VM."
 msgstr ""
 

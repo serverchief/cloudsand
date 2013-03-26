@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:04\n"
+"PO-Revision-Date: 2013-03-19T13:38:04\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -86,6 +86,16 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "# /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h kvm -s &lt;optional-management-server-secret-key&gt; -F"
+msgstr ""
+
+#. Tag: para
+#, no-c-format
+msgid "On Ubuntu, use the following path instead:"
+msgstr ""
+
+#. Tag: programlisting
+#, no-c-format
+msgid "# /usr/lib/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt"
 msgstr ""
 
 #. Tag: para

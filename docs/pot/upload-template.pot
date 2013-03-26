@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-02-02T20:11:59\n"
-"PO-Revision-Date: 2013-02-02T20:11:59\n"
+"POT-Creation-Date: 2013-03-19T13:38:05\n"
+"PO-Revision-Date: 2013-03-19T13:38:05\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Click Create Template."
+msgid "Click Register Template."
 msgstr ""
 
 #. Tag: para
@@ -65,22 +65,22 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"bold\">Name and Display Text</emphasis>. These will be shown in the UI, so choose something descriptive."
+msgid "<emphasis role=\"bold\">Name and Description</emphasis>. These will be shown in the UI, so choose something descriptive."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "URL. The Management Server will download the file from the specified URL, such as http://my.web.server/filename.vhd.gz."
+msgid "<emphasis role=\"bold\">URL</emphasis>. The Management Server will download the file from the specified URL, such as http://my.web.server/filename.vhd.gz."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "Zone. Choose the zone where you want the template to be available, or All Zones to make it available throughout &PRODUCT;."
+msgid "<emphasis role=\"bold\">Zone</emphasis>. Choose the zone where you want the template to be available, or All Zones to make it available throughout &PRODUCT;."
 msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "OS Type: This helps &PRODUCT; and the hypervisor perform certain operations and make assumptions that improve the performance of the guest. Select one of the following:"
+msgid "<emphasis role=\"bold\">OS Type</emphasis>: This helps &PRODUCT; and the hypervisor perform certain operations and make assumptions that improve the performance of the guest. Select one of the following:"
 msgstr ""
 
 #. Tag: para
@@ -100,7 +100,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"bold\">Hypervisor</emphasis>"
+msgid "<emphasis role=\"bold\">Hypervisor</emphasis>: The supported hypervisors are listed. Select the desired one."
 msgstr ""
 
 #. Tag: para
@@ -120,7 +120,7 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-msgid "<emphasis role=\"bold\">Public</emphasis>. Choose Yes to make this template accessible to all users of this &PRODUCT; installation. The template will appear in the Community Templates list. See <xref linkend=\"private-public-template\" />"
+msgid "<emphasis role=\"bold\">Public</emphasis>. Choose Yes to make this template accessible to all users of this &PRODUCT; installation. The template will appear in the Community Templates list. See <xref linkend=\"private-public-template\" />."
 msgstr ""
 
 #. Tag: para
