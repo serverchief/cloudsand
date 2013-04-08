@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:04\n"
-"PO-Revision-Date: 2013-03-19 14:08+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-24 00:51+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +68,7 @@ msgstr "listen_tcp = 1"
 #. Tag: programlisting
 #, no-c-format
 msgid "tcp_port = \"16059\""
-msgstr ""
+msgstr "tcp_port = \"16509\""
 
 #. Tag: programlisting
 #, no-c-format

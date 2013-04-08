@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:03\n"
-"PO-Revision-Date: 2013-03-19 14:05+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-23 08:34+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -525,7 +525,7 @@ msgstr "# scsi-rescan"
 #. Tag: para
 #, no-c-format
 msgid "Repeat step <xref linkend=\"rescan-scsi\" /> on every host."
-msgstr ""
+msgstr "<xref linkend=\"rescan-scsi\" /> の手順を各ホスト上で繰り返します。"
 
 #. Tag: para
 #, no-c-format
@@ -555,7 +555,7 @@ msgstr "lrwxrwxrwx 1 root root 9 Mar 16 13:47\n/dev/disk/by-id/scsi-360a98000503
 #. Tag: para
 #, no-c-format
 msgid "Repeat step <xref linkend=\"verify-scsi\" /> on every host."
-msgstr ""
+msgstr "<xref linkend=\"verify-scsi\" /> の手順を各ホスト上で繰り返します。"
 
 #. Tag: para
 #, no-c-format
@@ -1508,7 +1508,7 @@ msgstr "XenServer クラスターに移動し、[Actions]、[Manage]の順 に�
 #. Tag: para
 #, no-c-format
 msgid "Watch the status to see that all the hosts come up."
-msgstr "状態を監視し、すべてのホストが表示されるのを確認しま す。"
+msgstr "状態を監視し、すべてのホストが表示されるのを確認します。"
 
 #. Tag: para
 #, no-c-format

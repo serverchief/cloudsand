@@ -143,9 +143,15 @@ public class NetworkModelImpl extends ManagerBase implements NetworkModel {
     @Inject
     PodVlanMapDao _podVlanMapDao;
 
-    @Inject List<NetworkElement> _networkElements;
-    
-    @Inject
+    List<NetworkElement> _networkElements;
+    public List<NetworkElement> getNetworkElements() {
+		return _networkElements;
+	}
+	public void setNetworkElements(List<NetworkElement> _networkElements) {
+		this._networkElements = _networkElements;
+	}
+
+	@Inject
     NetworkDomainDao _networkDomainDao;
     @Inject
     VMInstanceDao _vmDao;
@@ -396,9 +402,9 @@ public class NetworkModelImpl extends ManagerBase implements NetworkModel {
         Network network = _networksDao.findById(networkId);
         NetworkElement oldElement = getElementImplementingProvider(oldProvider.getName());
         NetworkElement newElement = getElementImplementingProvider(newProvider.getName());
-        if (ComponentContext.getTargetObject(oldElement) instanceof IpDeployingRequester && ComponentContext.getTargetObject(newElement) instanceof IpDeployingRequester) {
-        	IpDeployer oldIpDeployer = ((IpDeployingRequester)ComponentContext.getTargetObject(oldElement)).getIpDeployer(network);
-        	IpDeployer newIpDeployer = ((IpDeployingRequester)ComponentContext.getTargetObject(newElement)).getIpDeployer(network);
+        if (oldElement instanceof IpDeployingRequester && newElement instanceof IpDeployingRequester) {
+        	IpDeployer oldIpDeployer = ((IpDeployingRequester)oldElement).getIpDeployer(network);
+        	IpDeployer newIpDeployer = ((IpDeployingRequester)newElement).getIpDeployer(network);
         	if (!oldIpDeployer.getProvider().getName().equals(newIpDeployer.getProvider().getName())) {
         		throw new InvalidParameterException("There would be multiple providers for IP " + publicIp.getAddress() + "!");
         	}

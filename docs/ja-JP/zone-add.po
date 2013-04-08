@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:05\n"
-"PO-Revision-Date: 2013-03-19 14:14+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-23 08:40+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +163,7 @@ msgstr "<emphasis role=\"bold\">Advanced :</emphasis> より高度なネット�
 msgid ""
 "For more information about the network types, see <xref linkend=\"about-"
 "physical-networks\" />."
-msgstr ""
+msgstr "ネットワークの種類について詳しくは、<xref linkend=\"about-physical-networks\" /> を参照してください。"
 
 #. Tag: para
 #, no-c-format

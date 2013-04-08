@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:04\n"
-"PO-Revision-Date: 2013-03-19 14:08+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-24 01:00+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "コマンドをコピーして実行するときは、単一の行とし
 #. Tag: para
 #, no-c-format
 msgid "To import an AMI:"
-msgstr ""
+msgstr "AMI をインポートするには"
 
 #. Tag: para
 #, no-c-format
@@ -125,7 +125,7 @@ msgid ""
 "# ls boot/vmlinuz*\n"
 "boot/vmlinuz-2.6.18-164.15.1.el5xen  boot/vmlinuz-2.6.18-164.6.1.el5.centos.plus  boot/vmlinuz-2.6.18-xenU-ec2-v1.0  boot/vmlinuz-2.6.21-2952.fc8xen\n"
 "\t\t\t"
-msgstr ""
+msgstr "# cd /mnt/loop/centos62\n# ls lib/modules/\n2.6.16.33-xenU  2.6.16-xenU  2.6.18-164.15.1.el5xen  2.6.18-164.6.1.el5.centos.plus  2.6.18-xenU-ec2-v1.0  2.6.21.7-2.fc8xen  2.6.31-302-ec2\n# ls boot/initrd*\nboot/initrd-2.6.18-164.6.1.el5.centos.plus.img boot/initrd-2.6.18-164.15.1.el5xen.img\n# ls boot/vmlinuz*\nboot/vmlinuz-2.6.18-164.15.1.el5xen  boot/vmlinuz-2.6.18-164.6.1.el5.centos.plus  boot/vmlinuz-2.6.18-xenU-ec2-v1.0  boot/vmlinuz-2.6.21-2952.fc8xen\n\t\t\t"
 
 #. Tag: para
 #, no-c-format

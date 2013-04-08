@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:04\n"
-"PO-Revision-Date: 2013-03-19 14:09+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-28 03:28+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,13 +124,13 @@ msgstr "# /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tm
 #. Tag: para
 #, no-c-format
 msgid "On Ubuntu, use the following path instead:"
-msgstr ""
+msgstr "Ubuntu の場合は代わりに以下のパスを利用してください。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "# /usr/lib/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt"
-msgstr ""
+msgstr "# /usr/lib/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt"
 
 #. Tag: para
 #, no-c-format

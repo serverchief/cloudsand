@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Docs\n"
 "POT-Creation-Date: 2013-03-19T13:38:04\n"
-"PO-Revision-Date: 2013-03-19 14:11+0000\n"
-"Last-Translator: sebgoa <runseb@gmail.com>\n"
+"PO-Revision-Date: 2013-03-28 03:13+0000\n"
+"Last-Translator: go_chiba <go.chiba@gmail.com>\n"
 "Language-Team: None\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgid ""
 " control how invitations behave. The table below shows global configuration "
 "parameters related to project invitations. Click the edit button to set each"
 " parameter."
-msgstr ""
+msgstr "検索結果には、招待状の動作を制御するために設定が必要なほかのパラメーターがいくつか含まれています。次の表に、プロジェクトの招待状に関連するグローバル構成パラメーターを示します。各パラメーターを 設定するには[Edit]アイコンをクリックします。"
 
 #. Tag: para
 #, no-c-format
@@ -169,7 +169,7 @@ msgstr "(オプション)SMTP サーバーが認証のために要求するユ�
 #. Tag: para
 #, no-c-format
 msgid "Restart the Management Server:"
-msgstr ""
+msgstr "管理サーバーを再起動します:"
 
 #. Tag: programlisting
 #, no-c-format

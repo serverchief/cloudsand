@@ -74,8 +74,18 @@ docs/runbook/tmp
 docs/runbook/publish
 .project
 Gemfile.lock
+<<<<<<< HEAD
 vmops*
 dvs-*
 deploydb.status
-jerry-run.txt
 
+=======
+debian/tmp
+debian/files
+debian/cloudstack-*/*
+debian/*.substvars
+debian/*.debhelper
+replace.properties.tmp
+build-indep-stamp
+configure-stamp
+>>>>>>> 4eee25714749133db8ca080088f9e55148dc216c
