@@ -393,7 +393,7 @@ body.login {
 
 .login .logo {
   width: 243px;
-  height: 31px;
+  height: 75;
   float: left;
   margin: 72px 0 0 209px;
   background: url(../images/logo-login.png) no-repeat -7px 0px;
