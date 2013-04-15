@@ -16,6 +16,8 @@
 # specific language governing permissions and limitations
 # under the License.
 
+DATEVER=`date +%m%d%y.%H%M`
+
 function usage() {
  echo ""
  echo "usage: ./package.sh [-p|--pack] [-h|--help] [ARGS]"
@@ -32,10 +34,11 @@ function usage() {
 
 function defaultPackaging() {
 CWD=`pwd`
+@RPMDIR=$CWD/../../dist/rpmbuild
 RPMDIR=$CWD/../../dist/rpmbuild
 PACK_PROJECT=cloudstack
 
-VERSION=`(cd ../../; mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version) | grep '^[0-9]\.'`
+VERSION=`(cd ../../; mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version) | grep '^[0-9]\.'`.$DATEVER
 if echo $VERSION | grep SNAPSHOT ; then
   REALVER=`echo $VERSION | cut -d '-' -f 1`
   DEFVER="-D_ver $REALVER"
@@ -47,6 +50,7 @@ else
   DEFREL=
 fi
 
+echo $RPMDIR
 mkdir -p $RPMDIR/SPECS
 mkdir -p $RPMDIR/SOURCES/$PACK_PROJECT-$VERSION
 
