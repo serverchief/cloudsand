@@ -38,12 +38,12 @@ CWD=`pwd`
 RPMDIR=$CWD/../../dist/rpmbuild
 PACK_PROJECT=cloudstack
 
-VERSION=`(cd ../../; mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version) | grep '^[0-9]\.'`.$DATEVER
+VERSION=`(cd ../../; mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version) | grep '^[0-9]\.'`
 if echo $VERSION | grep SNAPSHOT ; then
   REALVER=`echo $VERSION | cut -d '-' -f 1`
   DEFVER="-D_ver $REALVER"
   DEFPRE="-D_prerelease 1"
-  DEFREL="-D_rel SNAPSHOT"
+  DEFREL="-D_rel SNAPSHOT.$DATEVER"
 else
   DEFVER="-D_ver $REALVER"
   DEFPRE=
@@ -75,9 +75,9 @@ DEFOSSNOSS="-D_ossnoss $packageval"
 VERSION=`(cd ../../; mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version) | grep '^[0-9]\.'`
 if echo $VERSION | grep SNAPSHOT ; then
   REALVER=`echo $VERSION | cut -d '-' -f 1`
-  DEFVER="-D_ver $REALVER.$DATEVER"
+  DEFVER="-D_ver $REALVER"
   DEFPRE="-D_prerelease 1"
-  DEFREL="-D_rel SNAPSHOT"
+  DEFREL="-D_rel SNAPSHOT.$DATEVER"
 else
   DEFVER="-D_ver $REALVER"
   DEFPRE=
