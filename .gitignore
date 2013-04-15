@@ -40,8 +40,6 @@ build.number
 api.log.*.gz
 cloud.log.*.*
 unittest
-deps/cloud.userlibraries
-deps/awsapi-lib/
 .DS_Store
 .idea
 *.iml
@@ -78,6 +76,8 @@ Gemfile.lock
 vmops*
 dvs-*
 deploydb.status
+api.log*
+
 
 =======
 debian/tmp
