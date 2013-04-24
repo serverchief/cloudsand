@@ -399,10 +399,12 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Use
     protected String _name;
     protected String _instance;
     protected String _zone;
+    protected boolean _instanceNameFlag;
 
     @Inject ConfigurationDao _configDao;
     private int _createprivatetemplatefromvolumewait;
     private int _createprivatetemplatefromsnapshotwait;
+    private final int MAX_VM_NAME_LEN = 80;
 
     @Inject
     protected OrchestrationService _orchSrvc;
@@ -1727,6 +1729,14 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Use
 
         VirtualMachine.State.getStateMachine().registerListener(
                 new UserVmStateListener(_usageEventDao, _networkDao, _nicDao));
+        value = _configDao.getValue(Config.SetVmInternalNameUsingDisplayName.key());
+        if(value == null) {
+            _instanceNameFlag = false;
+        }
+        else
+        {
+            _instanceNameFlag = Boolean.parseBoolean(value);
+        }
 
         s_logger.info("User VM Manager is configured.");
 
@@ -2858,6 +2868,14 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Use
                 diskSize, networkList, securityGroupIdList, group, userData, sshKeyPair, hypervisor, caller, requestedIps, defaultIps, keyboard);
     }
 
+    public void checkNameForRFCCompliance(String name) {
+        if (!NetUtils.verifyDomainNameLabel(name, true)) {
+            throw new InvalidParameterValueException("Invalid name. Vm name can contain ASCII letters 'a' through 'z', the digits '0' through '9', "
+                    + "and the hyphen ('-'), must be between 1 and 63 characters long, and can't start or end with \"-\" and can't start with digit");
+        }
+    }
+
+
     @Override
     public UserVm createAdvancedSecurityGroupVirtualMachine(DataCenter zone, ServiceOffering serviceOffering, VirtualMachineTemplate template, List<Long> networkIdList,
             List<Long> securityGroupIdList, Account owner, String hostName, String displayName, Long diskOfferingId, Long diskSize, String group, HypervisorType hypervisor, String userData,
@@ -3282,8 +3300,23 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Use
 
         long id = _vmDao.getNextInSequence(Long.class, "id");
 
-        String instanceName = VirtualMachineName.getVmName(id, owner.getId(),
-                _instance);
+        String instanceName;
+        if (_instanceNameFlag && displayName != null) {
+            // Check if the displayName conforms to RFC standards.
+            checkNameForRFCCompliance(displayName);
+            instanceName = VirtualMachineName.getVmName(id, owner.getId(), displayName);
+            if (instanceName.length() > MAX_VM_NAME_LEN) {
+                throw new InvalidParameterValueException("Specified display name " + displayName + " causes VM name to exceed 80 characters in length");
+            }
+            // Search whether there is already an instance with the same instance name
+            // that is not in the destroyed or expunging state.
+            VMInstanceVO vm = _vmInstanceDao.findVMByInstanceName(instanceName);
+            if (vm != null && vm.getState() != VirtualMachine.State.Expunging) {
+                throw new InvalidParameterValueException("There already exists a VM by the display name supplied");
+            }
+        } else {
+            instanceName = VirtualMachineName.getVmName(id, owner.getId(), _instance);
+        }
 
         String uuidName = UUID.randomUUID().toString();
 
@@ -3291,12 +3324,8 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Use
         if (hostName == null) {
             hostName = uuidName;
         } else {
-            // 1) check is hostName is RFC complient
-            if (!NetUtils.verifyDomainNameLabel(hostName, true)) {
-                throw new InvalidParameterValueException(
-                        "Invalid name. Vm name can contain ASCII letters 'a' through 'z', the digits '0' through '9', "
-                        + "and the hyphen ('-'), must be between 1 and 63 characters long, and can't start or end with \"-\" and can't start with digit");
-            }
+            //1) check is hostName is RFC compliant
+            checkNameForRFCCompliance(hostName);
             // 2) hostName has to be unique in the network domain
             Map<String, List<Long>> ntwkDomains = new HashMap<String, List<Long>>();
             for (NetworkVO network : networkList) {

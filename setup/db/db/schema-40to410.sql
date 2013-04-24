@@ -1644,6 +1644,7 @@ CREATE TABLE `cloud`.`ucs_manager` (
 
 
 SET foreign_key_checks = 1;
+INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'vm.instancename.flag', 'false', 'Append guest VM display Name (if set) to the internal name of the VM');
 
 UPDATE `cloud`.`configuration` SET value='KVM,XenServer,VMware,Ovm' WHERE name='hypervisor.list';
 
