@@ -28,7 +28,7 @@
 
   <groupId>org.apache.cloudstack</groupId>
   <artifactId>cloudstack</artifactId>
-  <version>4.1.0-SNAPSHOT</version>
+  <version>4.1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Apache CloudStack</name>
   <description>Apache CloudStack is an IaaS (“Infrastracture as a Service”) cloud orchestration platform.</description>
@@ -298,6 +298,22 @@
     <defaultGoal>install</defaultGoal>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.2.1</version>
+          <executions>
+            <execution>
+              <id>default</id>
+              <goals>
+                <goal>perform</goal>
+              </goals>
+              <configuration>
+                <pomFileName>pom.xml</pomFileName>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
         <!--This plugin's configuration is used to store Eclipse m2e settings
           only. It has no influence on the Maven build itself. -->
         <plugin>
@@ -415,7 +431,7 @@
               <exclude>patches/systemvm/debian/config/etc/apache2/sites-available/default</exclude>
               <exclude>patches/systemvm/debian/config/etc/apache2/sites-available/default-ssl</exclude>
               <exclude>patches/systemvm/debian/config/etc/apache2/vhostexample.conf</exclude>
-              <exclude>patches/systemvm/debian/config/etc/dnsmasq.conf</exclude>
+              <exclude>patches/systemvm/debian/config/etc/dnsmasq.conf.tmpl</exclude>
               <exclude>patches/systemvm/debian/config/etc/vpcdnsmasq.conf</exclude>
               <exclude>patches/systemvm/debian/config/etc/ssh/sshd_config</exclude>
               <exclude>patches/systemvm/debian/config/etc/rsyslog.conf</exclude>
@@ -436,6 +452,7 @@
               <exclude>patches/systemvm/debian/config/var/www/html/userdata/.htaccess</exclude>
               <exclude>patches/systemvm/debian/config/var/www/html/latest/.htaccess</exclude>
               <exclude>patches/systemvm/debian/vpn/etc/ipsec.d/l2tp.conf</exclude>
+              <exclude>tools/transifex/.tx/config</exclude>
 
             </excludes>
           </configuration>

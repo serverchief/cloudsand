@@ -15,7 +15,7 @@ software distributed under the License is distributed on an
 KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
---%>
+--%><%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:if test="${!empty cookie.lang}">
@@ -70,6 +70,7 @@ under the License.
               <select name="language">
                 <option value=""></option> <!-- when this blank option is selected, browser's default language will be used -->
                 <option value="en"><fmt:message key="label.lang.english"/></option>
+                <option value="ar"><fmt:message key="label.lang.arabic"/></option>
                 <option value="ja"><fmt:message key="label.lang.japanese"/></option>
 		<option value="zh_CN"><fmt:message key="label.lang.chinese"/></option>
                 <option value="ru_RU"><fmt:message key="label.lang.russian"/></option>

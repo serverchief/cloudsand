@@ -34,8 +34,9 @@ build: build-indep
 build-indep: build-indep-stamp
 
 build-indep-stamp: configure
-	mvn package -DskipTests -Dsystemvm \
-        -Dcs.replace.properties=replace.properties.tmp
+	mvn clean package -Pawsapi -DskipTests -Dsystemvm \
+        -Dcs.replace.properties=replace.properties.tmp \
+		${ACS_BUILD_OPTS}
 	touch $@
 
 clean:
@@ -68,8 +69,8 @@ install:
 	install -D plugins/hypervisors/kvm/target/cloud-plugin-hypervisor-kvm-$(VERSION)-SNAPSHOT.jar $(DESTDIR)/usr/share/$(PACKAGE)-agent/lib/
 	install -D plugins/hypervisors/kvm/target/dependencies/* $(DESTDIR)/usr/share/$(PACKAGE)-agent/lib/
 	install -D packaging/debian/init/cloud-agent $(DESTDIR)/$(SYSCONFDIR)/init.d/$(PACKAGE)-agent
-	install -D agent/bindir/cloud-setup-agent.in $(DESTDIR)/usr/bin/cloudstack-setup-agent
-	install -D agent/bindir/cloud-ssh.in $(DESTDIR)/usr/bin/cloudstack-ssh
+	install -D agent/target/transformed/cloud-setup-agent $(DESTDIR)/usr/bin/cloudstack-setup-agent
+	install -D agent/target/transformed/cloud-ssh $(DESTDIR)/usr/bin/cloudstack-ssh
 	install -D agent/target/transformed/* $(DESTDIR)/$(SYSCONFDIR)/$(PACKAGE)/agent
 
 	# cloudstack-management
@@ -79,6 +80,7 @@ install:
 	mkdir -p $(DESTDIR)/$(SYSCONFDIR)/sudoers.d/
 	mkdir -p $(DESTDIR)/usr/share/$(PACKAGE)-management
 	mkdir -p $(DESTDIR)/usr/share/$(PACKAGE)-management/webapps/client
+	mkdir -p $(DESTDIR)/usr/share/$(PACKAGE)-management/webapps7080
 	mkdir $(DESTDIR)/usr/share/$(PACKAGE)-management/setup
 	mkdir $(DESTDIR)/var/log/$(PACKAGE)/management
 	mkdir $(DESTDIR)/var/cache/$(PACKAGE)/management
@@ -100,7 +102,7 @@ install:
 	ln -s tomcat6-nonssl.conf $(DESTDIR)/$(SYSCONFDIR)/$(PACKAGE)/management/tomcat6.conf
 	ln -s server-nonssl.xml $(DESTDIR)/$(SYSCONFDIR)/$(PACKAGE)/management/server.xml
 	install -D packaging/debian/init/cloud-management $(DESTDIR)/$(SYSCONFDIR)/init.d/$(PACKAGE)-management
-	install -D client/bindir/cloud-update-xenserver-licenses.in $(DESTDIR)/usr/bin/cloudstack-update-xenserver-licenses
+	install -D client/target/utilities/bin/cloud-update-xenserver-licenses $(DESTDIR)/usr/bin/cloudstack-update-xenserver-licenses
 	ln -s /usr/share/tomcat6/bin $(DESTDIR)/usr/share/$(PACKAGE)-management/bin
 	# Remove configuration in /ur/share/cloudstack-management/webapps/client/WEB-INF
 	# This should all be in /etc/cloudstack/management
@@ -147,7 +149,26 @@ install:
 	install -D packaging/debian/init/cloud-usage $(DESTDIR)/$(SYSCONFDIR)/init.d/$(PACKAGE)-usage
 
 	# cloudstack-awsapi
+	mkdir $(DESTDIR)/$(SYSCONFDIR)/$(PACKAGE)/awsapi
 	mkdir $(DESTDIR)/var/log/$(PACKAGE)/awsapi
+	mkdir $(DESTDIR)/usr/share/$(PACKAGE)-bridge
+	mkdir -p $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi
+	mkdir $(DESTDIR)/usr/share/$(PACKAGE)-bridge/setup
+	ln -s /usr/share/$(PACKAGE)-bridge/webapps/awsapi $(DESTDIR)/usr/share/$(PACKAGE)-management/webapps7080/awsapi
+	cp -r awsapi/target/cloud-awsapi-$(VERSION)-SNAPSHOT/* $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi
+	install -D awsapi-setup/setup/cloud-setup-bridge $(DESTDIR)/usr/bin/cloudstack-setup-bridge
+	install -D awsapi-setup/setup/cloudstack-aws-api-register $(DESTDIR)/usr/bin/cloudstack-aws-api-register
+	cp -r awsapi-setup/db/mysql/* $(DESTDIR)/usr/share/$(PACKAGE)-bridge/setup
+	for i in cloud-bridge.properties commons-logging.properties crypto.properties xes.keystore ec2-service.properties; do \
+	        mv $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/$$i $(DESTDIR)/$(SYSCONFDIR)/$(PACKAGE)/management/; \
+	done
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/log4j-vmops.xml
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/log4j.properties
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/db.properties
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/LICENSE.txt
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/NOTICE.txt
+	rm $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/services.xml
+	rm -rf $(DESTDIR)/usr/share/$(PACKAGE)-bridge/webapps/awsapi/WEB-INF/classes/META-INF
 
 	dh_installdirs
 	dh_install

@@ -106,6 +106,7 @@ public class UploadMonitorImpl extends ManagerBase implements UploadMonitor {
 
 	private String _name;
 	private Boolean _sslCopy = new Boolean(false);
+	private String _ssvmUrlDomain;
     private ScheduledExecutorService _executor = null;
 
 	Timer _timer;
@@ -215,7 +216,26 @@ public class UploadMonitorImpl extends ManagerBase implements UploadMonitor {
 	    //Check if it already exists.
 	    List<UploadVO> extractURLList = _uploadDao.listByTypeUploadStatus(template.getId(), type, UploadVO.Status.DOWNLOAD_URL_CREATED);	    
 	    if (extractURLList.size() > 0) {
-            return extractURLList.get(0);
+               // do some check here
+               UploadVO upload = extractURLList.get(0);
+               String uploadUrl = extractURLList.get(0).getUploadUrl();
+               String[] token = uploadUrl.split("/");
+               // example: uploadUrl = https://10-11-101-112.realhostip.com/userdata/2fdd9a70-9c4a-4a04-b1d5-1e41c221a1f9.iso
+               // then token[2] = 10-11-101-112.realhostip.com, token[4] = 2fdd9a70-9c4a-4a04-b1d5-1e41c221a1f9.iso
+               String hostname = ssvm.getPublicIpAddress().replace(".", "-") + ".";
+               if ((token != null) && (token.length == 5) && (token[2].equals(hostname + _ssvmUrlDomain))) // ssvm publicip and domain suffix not changed
+                   return extractURLList.get(0);
+               else if ((token != null) && (token.length == 5) && (token[2].startsWith(hostname))) { // domain suffix changed
+                   String uuid = token[4];
+                   uploadUrl = generateCopyUrl(ssvm.getPublicIpAddress(), uuid);
+                   UploadVO vo = _uploadDao.createForUpdate();
+                   vo.setLastUpdated(new Date());
+                   vo.setUploadUrl(uploadUrl);
+                   _uploadDao.update(upload.getId(), vo);
+                   return _uploadDao.findById(upload.getId(), true);
+               } else { // ssvm publicip changed
+                   return null;
+               }
         }
 	    
 	    // It doesn't exist so create a DB entry.	    
@@ -329,8 +349,14 @@ public class UploadMonitorImpl extends ManagerBase implements UploadMonitor {
 	        String scheme = "http";
 	        if (_sslCopy) {
 	            hostname = ipAddress.replace(".", "-");
-	            hostname = hostname + ".realhostip.com";
 	            scheme = "https";
+	            
+	            // Code for putting in custom certificates.
+	            if(_ssvmUrlDomain != null && _ssvmUrlDomain.length() > 0){
+	            	hostname = hostname + "." + _ssvmUrlDomain;
+	            }else{
+	            	hostname = hostname + ".realhostip.com";
+	            }	            
 	        }
 	        return scheme + "://" + hostname + "/userdata/" + uuid; 
 	    }
@@ -347,10 +373,7 @@ public class UploadMonitorImpl extends ManagerBase implements UploadMonitor {
         final Map<String, String> configs = _configDao.getConfiguration("ManagementServer", params);
         _sslCopy = Boolean.parseBoolean(configs.get("secstorage.encrypt.copy"));
         
-        String cert = configs.get("secstorage.secure.copy.cert");
-        if ("realhostip.com".equalsIgnoreCase(cert)) {
-        	s_logger.warn("Only realhostip.com ssl cert is supported, ignoring self-signed and other certs");
-        }        
+        _ssvmUrlDomain = configs.get("secstorage.ssl.cert.domain");      
         
         _agentMgr.registerForHostEvents(new UploadListener(this), true, false, false);
         String cleanupInterval = configs.get("extract.url.cleanup.interval");

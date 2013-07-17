@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
 <!ENTITY % BOOK_ENTITIES SYSTEM "cloudstack.ent">
 %BOOK_ENTITIES;
-<!ENTITY % xinclude SYSTEM "http://www.docbook.org/xml/4.4/xinclude.mod">
-%xinclude;
 ]>
 
 <!-- Licensed to the Apache Software Foundation (ASF) under one
@@ -23,9 +21,8 @@
  specific language governing permissions and limitations
  under the License.
 -->
-<chapter id="niciranvp-plugin-guide">
-    <title>Plugin Guide for the Nicira NVP Plugin</title>
-    <xi:include href="plugin-niciranvp-about.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-    <xi:include href="plugin-niciranvp-usage.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-    <xi:include href="plugin-niciranvp-troubleshooting.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+<chapter id="plugin-development">
+  <title>Plugin Development</title>
+  <xi:include href="creating-my-first-plugin.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
 </chapter>

@@ -113,7 +113,8 @@ if [ $ipv6 ]
 then
   sed -i  /$ipv6,/d $DHCP_HOSTS
 fi
-sed -i  /$host,/d $DHCP_HOSTS
+# don't want to do this in the future, we can have same VM with multiple nics/entries
+#sed -i  /$host,/d $DHCP_HOSTS
 
 
 #put in the new entry
@@ -191,7 +192,7 @@ then
   fi
   [ "$routes" != "" ] && echo "$tag,121,$routes" >> $DHCP_OPTS
   #delete entry we just put in because we need a tag
-  sed -i  /$ipv4/d $DHCP_HOSTS 
+  sed -i  /$ipv4,/d $DHCP_HOSTS
   #put it back with a tag
   echo "$mac,set:$tag,$ipv4,$host,infinite" >>$DHCP_HOSTS
 fi

@@ -985,8 +985,7 @@ ServerResource {
             */
             dm = conn.domainCreateXML(domainXML, 0);
         } catch (final LibvirtException e) {
-            s_logger.warn("Failed to start domain " + vmName + ": "
-                    + e.getMessage());
+            throw e;
         }
 
         return null;
@@ -1198,7 +1197,7 @@ ServerResource {
                 secondaryStoragePool = _storagePoolMgr.getStoragePoolByURI(
                         secondaryStorageUrl);
                 secondaryStoragePool.createFolder(volumeDestPath);
-                secondaryStoragePool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStoragePool.getType(),secondaryStoragePool.getUuid());
                 secondaryStoragePool = _storagePoolMgr.getStoragePoolByURI(
                         secondaryStorageUrl
                         + volumeDestPath);
@@ -1220,7 +1219,7 @@ ServerResource {
             return new CopyVolumeAnswer(cmd, false, e.toString(), null, null);
         } finally {
             if (secondaryStoragePool != null) {
-                secondaryStoragePool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStoragePool.getType(),secondaryStoragePool.getUuid());
             }
         }
     }
@@ -1343,7 +1342,7 @@ ServerResource {
             return null;
         } finally {
             if (secondaryPool != null) {
-                secondaryPool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryPool.getType(),secondaryPool.getUuid());
             }
         }
     }
@@ -1948,7 +1947,7 @@ ServerResource {
                     true);
         } finally {
             if (secondaryStoragePool != null) {
-                secondaryStoragePool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStoragePool.getType(),secondaryStoragePool.getUuid());
             }
         }
         return new BackupSnapshotAnswer(cmd, true, null, snapshotRelPath
@@ -1980,7 +1979,7 @@ ServerResource {
             return new DeleteSnapshotBackupAnswer(cmd, false, e.toString());
         } finally {
             if (secondaryStoragePool != null) {
-                secondaryStoragePool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStoragePool.getType(),secondaryStoragePool.getUuid());
             }
         }
         return new DeleteSnapshotBackupAnswer(cmd, true, null);
@@ -2009,7 +2008,7 @@ ServerResource {
             return new Answer(cmd, false, e.toString());
         } finally {
             if (secondaryStoragePool != null) {
-                secondaryStoragePool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStoragePool.getType(),secondaryStoragePool.getUuid());
             }
 
         }
@@ -2107,10 +2106,10 @@ ServerResource {
             return new CreatePrivateTemplateAnswer(cmd, false, e.getMessage());
         } finally {
             if (secondaryPool != null) {
-                secondaryPool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryPool.getType(), secondaryPool.getUuid());
             }
             if (snapshotPool != null) {
-                snapshotPool.delete();
+                _storagePoolMgr.deleteStoragePool(snapshotPool.getType(), snapshotPool.getUuid());
             }
         }
     }
@@ -2233,7 +2232,7 @@ ServerResource {
             return new CreatePrivateTemplateAnswer(cmd, false, e.toString());
         } finally {
             if (secondaryStorage != null) {
-                secondaryStorage.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryStorage.getType(), secondaryStorage.getUuid());
             }
         }
     }
@@ -2291,7 +2290,7 @@ ServerResource {
             return new PrimaryStorageDownloadAnswer(e.toString());
         } finally {
             if (secondaryPool != null) {
-                secondaryPool.delete();
+                _storagePoolMgr.deleteStoragePool(secondaryPool.getType(),secondaryPool.getUuid());
             }
         }
     }
@@ -2587,6 +2586,9 @@ ServerResource {
         } finally {
             try {
                 if (dm != null) {
+                    if (dm.isPersistent() == 1) {
+                        dm.undefine();
+                    }
                     dm.free();
                 }
                 if (dconn != null) {
@@ -2697,7 +2699,7 @@ ServerResource {
         Pair<Double, Double> nicStats = getNicStats(_publicBridgeName);
 
         HostStatsEntry hostStats = new HostStatsEntry(cmd.getHostId(), cpuUtil,
-                nicStats.first() / 1000, nicStats.second() / 1000, "host",
+                nicStats.first() / 1024, nicStats.second() / 1024, "host",
                 totMem, freeMem, 0, 0);
         return new GetHostStatsAnswer(cmd, hostStats);
     }
@@ -3049,6 +3051,8 @@ ServerResource {
         if (vmTO.getOs().startsWith("Windows")) {
             clock.setClockOffset(ClockDef.ClockOffset.LOCALTIME);
             clock.setTimer("rtc", "catchup", null);
+        } else if (vmTO.getType() != VirtualMachine.Type.User) {
+            clock.setTimer("kvmclock", "catchup", null);
         }
 
         vm.addComp(clock);
@@ -3364,7 +3368,7 @@ ServerResource {
             KVMStoragePool pool = _storagePoolMgr.getStoragePool(
                                       StoragePoolType.Filesystem, poolUuid);
             if (pool != null) {
-                pool.delete();
+                _storagePoolMgr.deleteStoragePool(pool.getType(),pool.getUuid());
             }
             return true;
         } catch (CloudRuntimeException e) {
@@ -3413,6 +3417,7 @@ ServerResource {
         List<DiskDef> disks = null;
         Domain dm = null;
         DiskDef diskdef = null;
+        KVMStoragePool attachingPool = attachingDisk.getPool();
         try {
             if (!attach) {
                 dm = conn.domainLookupByUUID(UUID.nameUUIDFromBytes(vmName
@@ -3437,7 +3442,12 @@ ServerResource {
                 }
             } else {
                 diskdef = new DiskDef();
-                if (attachingDisk.getFormat() == PhysicalDiskFormat.QCOW2) {
+                if (attachingPool.getType() == StoragePoolType.RBD) {
+                    diskdef.defNetworkBasedDisk(attachingDisk.getPath(),
+                            attachingPool.getSourceHost(), attachingPool.getSourcePort(),
+                            attachingPool.getAuthUserName(), attachingPool.getUuid(), devId,
+                            DiskDef.diskBus.VIRTIO, diskProtocol.RBD);
+                } else if (attachingDisk.getFormat() == PhysicalDiskFormat.QCOW2) {
                     diskdef.defFileBasedDisk(attachingDisk.getPath(), devId,
                             DiskDef.diskBus.VIRTIO, DiskDef.diskFmtType.QCOW2);
                 } else if (attachingDisk.getFormat() == PhysicalDiskFormat.RAW) {
@@ -4234,9 +4244,11 @@ ServerResource {
     }
 
     private void cleanupVMNetworks(Connect conn, List<InterfaceDef> nics) {
-        for (InterfaceDef nic : nics) {
-            if (nic.getHostNetType() == hostNicType.VNET) {
-                cleanupVnet(conn, getVnetIdFromBrName(nic.getBrName()));
+        if (nics != null) {
+            for (InterfaceDef nic : nics) {
+                if (nic.getHostNetType() == hostNicType.VNET) {
+                    cleanupVnet(conn, getVnetIdFromBrName(nic.getBrName()));
+                }
             }
         }
     }
@@ -4393,10 +4405,10 @@ ServerResource {
             if (oldStats != null) {
                 long deltarx = rx - oldStats._rx;
                 if (deltarx > 0)
-                    stats.setNetworkReadKBs(deltarx / 1000);
+                    stats.setNetworkReadKBs(deltarx / 1024);
                 long deltatx = tx - oldStats._tx;
                 if (deltatx > 0)
-                    stats.setNetworkWriteKBs(deltatx / 1000);
+                    stats.setNetworkWriteKBs(deltatx / 1024);
             }
 
             vmStats newStat = new vmStats();

@@ -864,6 +864,11 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
             }
         }
 
+        if (startedVm == null) {
+            throw new CloudRuntimeException("Unable to start instance '" + vm.getHostName()
+                            + "' (" + vm.getUuid() + "), see management server log for details");
+        }
+
         return startedVm;
     }
 
@@ -1078,7 +1083,9 @@ public class VirtualMachineManagerImpl extends ManagerBase implements VirtualMac
             vmGuru.finalizeStop(profile, answer);
 
         } catch (AgentUnavailableException e) {
+            s_logger.warn("Unable to stop vm, agent unavailable: " + e.toString());
         } catch (OperationTimedoutException e) {
+            s_logger.warn("Unable to stop vm, operation timed out: " + e.toString());
         } finally {
             if (!stopped) {
                 if (!forced) {

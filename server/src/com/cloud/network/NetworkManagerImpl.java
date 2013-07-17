@@ -2793,7 +2793,7 @@ public class NetworkManagerImpl extends ManagerBase implements NetworkManager, L
             }
 
             // Save usage event
-            if (ip.getAllocatedToAccountId() != Account.ACCOUNT_ID_SYSTEM) {
+            if (ip.getAllocatedToAccountId() != null && ip.getAllocatedToAccountId() != Account.ACCOUNT_ID_SYSTEM) {
                 VlanVO vlan = _vlanDao.findById(ip.getVlanId());
 
                 String guestType = vlan.getVlanType().toString();
@@ -3494,8 +3494,8 @@ public class NetworkManagerImpl extends ManagerBase implements NetworkManager, L
                 
                 //2) prepare nic
                 if (prepare) {
-                    NetworkVO networkVO = _networksDao.findById(network.getId());
-                    nic = prepareNic(vmProfile, dest, context, nic.getId(), networkVO);
+                    Pair<NetworkGuru, NetworkVO> implemented = implementNetwork(nic.getNetworkId(), dest, context);
+                    nic = prepareNic(vmProfile, dest, context, nic.getId(), implemented.second());
                     s_logger.debug("Nic is prepared successfully for vm " + vm + " in network " + network);
                 }
                 

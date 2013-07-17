@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.cloudstack</groupId>
     <artifactId>cloudstack</artifactId>
-    <version>4.1.0-SNAPSHOT</version>
+    <version>4.1.1-SNAPSHOT</version>
   </parent>
   <dependencies>
     <dependency>
@@ -36,6 +36,11 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>${cs.mysql.version}</version>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+    	<groupId>commons-daemon</groupId>
+    	<artifactId>commons-daemon</artifactId>
+    	<version>1.0.10</version>
     </dependency>
   </dependencies>
   <build>
@@ -106,8 +111,6 @@
                     </filterreader>
                   </filterchain>
                 </copy>
-              </target>
-              <target>
                 <copy overwrite="true"
                   todir="${basedir}/target/transformed">
                   <fileset dir="${basedir}/conf">

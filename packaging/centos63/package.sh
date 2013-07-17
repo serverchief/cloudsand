@@ -45,9 +45,10 @@ if echo $VERSION | grep SNAPSHOT ; then
   DEFPRE="-D_prerelease 1"
   DEFREL="-D_rel SNAPSHOT.$DATEVER"
 else
+  REALVER=`echo $VERSION`
   DEFVER="-D_ver $REALVER"
   DEFPRE=
-  DEFREL=
+  DEFREL="-D_rel 0"
 fi
 
 echo $RPMDIR
@@ -79,9 +80,10 @@ if echo $VERSION | grep SNAPSHOT ; then
   DEFPRE="-D_prerelease 1"
   DEFREL="-D_rel SNAPSHOT.$DATEVER"
 else
+  REALVER=`echo $VERSION`
   DEFVER="-D_ver $REALVER"
   DEFPRE=
-  DEFREL=
+  DEFREL="-D_rel 0"
 fi
 
 mkdir -p $RPMDIR/SPECS

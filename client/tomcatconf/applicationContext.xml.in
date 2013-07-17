@@ -371,6 +371,9 @@
   <bean id="LDAPUserAuthenticator" class="com.cloud.server.auth.LDAPUserAuthenticator">
     <property name="name" value="LDAP"/>
   </bean>
+  <bean id="PlainTextUserAuthenticator" class="com.cloud.server.auth.PlainTextUserAuthenticator">
+    <property name="name" value="PLAINTEXT"/>
+  </bean>
 
   <!--
       Network Elements
@@ -512,10 +515,14 @@
   -->
   <bean id="UserDispersingPlanner" class="com.cloud.deploy.UserDispersingPlanner">
     <property name="name" value="UserDispersing"/>
+	<property name="StoragePoolAllocators" value="#{storagePoolAllocators.Adapters}" />
+    <property name="HostAllocators" value="#{hostAllocators.Adapters}" />
   </bean>
   
   <bean id="UserConcentratedPodPlanner" class="com.cloud.deploy.UserConcentratedPodPlanner">
     <property name="name" value="UserConcentratedPod"/>
+	<property name="StoragePoolAllocators" value="#{storagePoolAllocators.Adapters}" />
+    <property name="HostAllocators" value="#{hostAllocators.Adapters}" />
   </bean>
 
   <bean id="clusterBasedAgentLoadBalancerPlanner" class="com.cloud.cluster.agentlb.ClusterBasedAgentLoadBalancerPlanner">
@@ -709,7 +716,6 @@
   <bean id="defaultImageMotionStrategy" class="org.apache.cloudstack.storage.image.motion.DefaultImageMotionStrategy" />
   <bean id="defaultPrimaryDataStoreProviderManagerImpl" class="org.apache.cloudstack.storage.datastore.manager.DefaultPrimaryDataStoreProviderManagerImpl" />
   <bean id="defaultPrimaryDatastoreProviderImpl" class="org.apache.cloudstack.storage.datastore.provider.DefaultPrimaryDatastoreProviderImpl" />
-  <bean id="eventUtils" class="com.cloud.event.EventUtils" />
   <bean id="hypervisorBasedSnapshot" class="org.apache.cloudstack.storage.snapshot.strategy.HypervisorBasedSnapshot" />
   <bean id="hypervsiorHostEndPointRpcServer" class="org.apache.cloudstack.storage.HypervsiorHostEndPointRpcServer" />
   <bean id="iSCSI" class="org.apache.cloudstack.storage.datastore.type.ISCSI" />
