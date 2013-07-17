@@ -55,19 +55,16 @@ create_htaccess() {
         then
                 echo -e $entry >> $htaccessFile;
                 result=$?
-  fi
+        else
+                entry="Options -Indexes\\nOrder Deny,Allow\\nDeny from all\\nAllow from $vmIp"
+                htaccessFolder="/var/www/html/$folder/$vmIp"
+                htaccessFile=$htaccessFolder/.htaccess
 
-  entry="Options -Indexes\\nOrder Deny,Allow\\nDeny from all\\nAllow from $vmIp"
-  testentry="Allow from $vmIp"
-  htaccessFolder="/var/www/html/$folder/$vmIp"
-  htaccessFile=$htaccessFolder/.htaccess
-  if ! grep -Fq "$testentry" $htaccessFile
-        then
                 mkdir -p $htaccessFolder
+                echo "echo -e $entry \> $htaccessFile"
                 echo -e $entry > $htaccessFile
                 result=$?
   fi
-
 
   return $result
 
