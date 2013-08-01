@@ -21,8 +21,6 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.apache.cloudstack.api.command.admin.config.UpdateCfgCmd;
-import org.apache.cloudstack.api.command.admin.ldap.LDAPConfigCmd;
-import org.apache.cloudstack.api.command.admin.ldap.LDAPRemoveCmd;
 import org.apache.cloudstack.api.command.admin.network.CreateNetworkOfferingCmd;
 import org.apache.cloudstack.api.command.admin.network.DeleteNetworkOfferingCmd;
 import org.apache.cloudstack.api.command.admin.network.UpdateNetworkOfferingCmd;
@@ -259,10 +257,6 @@ public interface ConfigurationService {
     Integer getServiceOfferingNetworkRate(long serviceOfferingId);
 
     DiskOffering getDiskOffering(long diskOfferingId);
-
-    boolean updateLDAP(LDAPConfigCmd cmd) throws NamingException;
-
-	boolean removeLDAP(LDAPRemoveCmd cmd);
 
     /**
      * @param offering

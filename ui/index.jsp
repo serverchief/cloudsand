@@ -460,6 +460,37 @@ under the License.
           <div class="button next"><span><fmt:message key="label.next"/></span></div>
         </div>
       </div>
+      <!-- Accounts wizard -->
+      <div class="multi-wizard accounts-wizard">
+        <form>
+          <div class="steps">
+              <div class="content ldap-account-choice">
+                <div class="select-container">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th style="width:40px">Select</th>
+                        <th style="width:110px">Realname</th>
+                        <th style="width:70px">Username</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="content input-area">
+                <div class="select-container manual-account-details">
+                </div>
+              </div>
+          </div>
+        </form>
+        <div class="buttons">
+          <button class="cancel ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span><fmt:message key="label.cancel"/></span></button>
+          <button class="next ok ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span><fmt:message key="label.add"/></span></button>
+        </div>
+      </div>
       <!-- Zone wizard -->
       <div class="multi-wizard zone-wizard">
         <div class="progress">
@@ -1671,6 +1702,8 @@ under the License.
     <script type="text/javascript" src="scripts/ui-custom/uploadVolume.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/storage.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/templates.js?t=<%=now%>"></script>
+	<script type="text/javascript" src="scripts/accountsWizard.js?t=<%=now%>"></script>
+	<script type="text/javascript" src="scripts/ui-custom/accountsWizard.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/accounts.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/configuration.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/globalSettings.js?t=<%=now%>"></script>

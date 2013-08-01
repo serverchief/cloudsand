@@ -152,6 +152,7 @@ dictionary = {
 'label.continue': '<fmt:message key="label.continue"/>',
 'message.setup.successful': '<fmt:message key="message.setup.successful"/>',
 'label.may.continue': '<fmt:message key="label.may.continue"/>',
+'error.could.not.change.your.password.because.ldap.is.enabled': '<fmt:message key="error.could.not.change.your.password.because.ldap.is.enabled" />',
 'error.installWizard.message': '<fmt:message key="error.installWizard.message"/>',
 'message.installWizard.now.building': '<fmt:message key="message.installWizard.now.building"/>',
 'message.installWizard.click.retry': '<fmt:message key="message.installWizard.click.retry"/>',

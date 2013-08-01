@@ -40,10 +40,7 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 import org.apache.cloudstack.acl.SecurityChecker;
-import org.apache.cloudstack.api.ApiConstants.LDAPParams;
 import org.apache.cloudstack.api.command.admin.config.UpdateCfgCmd;
-import org.apache.cloudstack.api.command.admin.ldap.LDAPConfigCmd;
-import org.apache.cloudstack.api.command.admin.ldap.LDAPRemoveCmd;
 import org.apache.cloudstack.api.command.admin.network.CreateNetworkOfferingCmd;
 import org.apache.cloudstack.api.command.admin.network.DeleteNetworkOfferingCmd;
 import org.apache.cloudstack.api.command.admin.network.UpdateNetworkOfferingCmd;
@@ -1241,137 +1238,6 @@ public class ConfigurationManagerImpl extends ManagerBase implements Configurati
 
         return success;
 
-    }
-
-    @Override
-    @DB
-    public boolean removeLDAP(LDAPRemoveCmd cmd) {
-        _configDao.expunge(LDAPParams.hostname.toString());
-        _configDao.expunge(LDAPParams.port.toString());
-        _configDao.expunge(LDAPParams.queryfilter.toString());
-        _configDao.expunge(LDAPParams.searchbase.toString());
-        _configDao.expunge(LDAPParams.usessl.toString());
-        _configDao.expunge(LDAPParams.dn.toString());
-        _configDao.expunge(LDAPParams.passwd.toString());
-        _configDao.expunge(LDAPParams.truststore.toString());
-        _configDao.expunge(LDAPParams.truststorepass.toString());
-        return true;
-    }
-
-    @Override
-    @DB
-    public boolean updateLDAP(LDAPConfigCmd cmd) {
-        try {
-            // set the ldap details in the zone details table with a zone id of -12
-            String hostname = cmd.getHostname();
-            Integer port = cmd.getPort();
-            String queryFilter = cmd.getQueryFilter();
-            String searchBase = cmd.getSearchBase();
-            Boolean useSSL = cmd.getUseSSL();
-            String bindDN = cmd.getBindDN();
-            String bindPasswd = cmd.getBindPassword();
-            String trustStore = cmd.getTrustStore();
-            String trustStorePassword = cmd.getTrustStorePassword();
-
-            if (bindDN != null && bindPasswd == null) {
-                throw new InvalidParameterValueException("If you specify a bind name then you need to provide bind password too.");
-            }
-
-            // check if the info is correct
-            Hashtable<String, String> env = new Hashtable<String, String>(11);
-            env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-            String protocol = "ldap://";
-            if (new Boolean(useSSL)) {
-                env.put(Context.SECURITY_PROTOCOL, "ssl");
-                protocol = "ldaps://";
-                if (trustStore == null || trustStorePassword == null) {
-                    throw new InvalidParameterValueException("If you plan to use SSL then you need to configure the trust store.");
-                }
-                System.setProperty("javax.net.ssl.trustStore", trustStore);
-                System.setProperty("javax.net.ssl.trustStorePassword", trustStorePassword);
-            }
-            env.put(Context.PROVIDER_URL, protocol + hostname + ":" + port);
-            if (bindDN != null && bindPasswd != null) {
-                env.put(Context.SECURITY_AUTHENTICATION, "simple");
-                env.put(Context.SECURITY_PRINCIPAL, bindDN);
-                env.put(Context.SECURITY_CREDENTIALS, bindPasswd);
-            }
-            // Create the initial context
-            DirContext ctx = new InitialDirContext(env);
-            ctx.close();
-
-            // store the result in DB COnfiguration
-            ConfigurationVO cvo = _configDao.findByName(LDAPParams.hostname.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.hostname.toString(), null, "Hostname or ip address of the ldap server eg: my.ldap.com");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(hostname));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.port.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.port.toString(), null, "Specify the LDAP port if required, default is 389");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(port.toString()));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.queryfilter.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.queryfilter.toString(), null,
-                        "You specify a query filter here, which narrows down the users, who can be part of this domain");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(queryFilter));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.searchbase.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.searchbase.toString(), null,
-                        "The search base defines the starting point for the search in the directory tree Example:  dc=cloud,dc=com.");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(searchBase));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.usessl.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.usessl.toString(), null, "Check Use SSL if the external LDAP server is configured for LDAP over SSL.");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(useSSL.toString()));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.dn.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.dn.toString(), null, "Specify the distinguished name of a user with the search permission on the directory");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(bindDN));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.passwd.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.passwd.toString(), null, "Enter the password");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(bindPasswd));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.truststore.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.truststore.toString(), null, "Enter the path to trusted keystore");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(trustStore));
-            _configDao.persist(cvo);
-
-            cvo = _configDao.findByName(LDAPParams.truststorepass.toString());
-            if (cvo == null) {
-                cvo = new ConfigurationVO("Hidden", "DEFAULT", "management-server", LDAPParams.truststorepass.toString(), null, "Enter the password for trusted keystore");
-            }
-            cvo.setValue(DBEncryptionUtil.encrypt(trustStorePassword));
-            _configDao.persist(cvo);
-
-            s_logger.debug("The ldap server is configured: " + hostname);
-        } catch (NamingException ne) {
-            ne.printStackTrace();
-            throw new InvalidParameterValueException("Naming Exception, check you ldap data ! " + ne.getMessage() + (ne.getCause() != null ? ("Caused by:" + ne.getCause().getMessage()) : ""));
-        }
-        return true;
     }
 
     @Override

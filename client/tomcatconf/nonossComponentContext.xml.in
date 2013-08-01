@@ -145,7 +145,7 @@
     <property name="Adapters">
       <list>
           <ref bean="MD5UserAuthenticator"/>
-          <ref bean="LDAPUserAuthenticator"/>
+          <ref bean="LdapAuthenticator"/>
       </list>
     </property>
   </bean>
