@@ -541,7 +541,7 @@ addBaremetalHost=1
 
 #### LDAP
 listLdapConfigurations=15
-addLdapConfiguration=1
-deleteLdapConfiguration=1
-listAllLdapUsers=1
-ldapCreateAccount=1
+addLdapConfiguration=3
+deleteLdapConfiguration=3
+listLdapUsers=3
+ldapCreateAccount=3

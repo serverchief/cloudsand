@@ -897,7 +897,7 @@
                                                     }
                                                 }
                                             }
-                                        })
+                                        });
                                         var password = args.data.newPassword;
                                         if (md5Hashed)
                                             password = $.md5(password);
@@ -925,6 +925,7 @@
                                     }
                                 }
                             },
+
 
                             generateKeys: {
                                 label: 'label.action.generate.keys',
@@ -1158,7 +1159,7 @@
                                                 });
                                             }
                                         });
-                                    } else { //normal user doesn't have access listUsers API until Bug 14127 is fixed.							
+                                    } else { //normal user doesn't have access listUsers API until Bug 14127 is fixed.
                                         args.response.success({
                                             actionFilter: userActionfilter,
                                             data: args.context.users[0]
@@ -1180,8 +1181,8 @@
         if (jsonObj.state == 'Destroyed') return [];
 
         if (isAdmin()) {
-            allowedActions.push("edit"); //updating networkdomain is allowed on any account, including system-generated default admin account 
-            if (!(jsonObj.domain == "ROOT" && jsonObj.name == "admin" && jsonObj.accounttype == 1)) { //if not system-generated default admin account    
+            allowedActions.push("edit"); //updating networkdomain is allowed on any account, including system-generated default admin account
+            if (!(jsonObj.domain == "ROOT" && jsonObj.name == "admin" && jsonObj.accounttype == 1)) { //if not system-generated default admin account
                 if (jsonObj.state == "enabled") {
                     allowedActions.push("disable");
                     allowedActions.push("lock");
@@ -1204,7 +1205,7 @@
             allowedActions.push("edit");
             allowedActions.push("changePassword");
             allowedActions.push("generateKeys");
-            if (!(jsonObj.domain == "ROOT" && jsonObj.account == "admin" && jsonObj.accounttype == 1)) { //if not system-generated default admin account user 
+            if (!(jsonObj.domain == "ROOT" && jsonObj.account == "admin" && jsonObj.accounttype == 1)) { //if not system-generated default admin account user
                 if (jsonObj.state == "enabled")
                     allowedActions.push("disable");
                 if (jsonObj.state == "disabled")

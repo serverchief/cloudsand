@@ -93,24 +93,24 @@
                 if (ldapStatus) {
                     var $table = $wizard.find('.ldap-account-choice tbody');
                     $.ajax({
-                        url: createURL("listAllLdapUsers"),
+                        url: createURL("listLdapUsers&listtype=new"),
                         dataType: "json",
                         async: false,
                         success: function(json) {
-			    if(json.ldapuserresponse.count > 0) {
-				$(json.ldapuserresponse.LdapUser).each(function() {
-				    var result = $("<tr>");
-				    result.append("<td><input type=\"checkbox\" class=\"required\" name=\"username\" value=\"" + this.username + "\"></td>");
-				    result.append("<td>" + this.firstname + " " + this.lastname + "</td>");
-				    result.append("<td>" + this.username + "</td>");
-				    result.append("<td>" + this.email + "</td>");
-				    $table.append(result);
-				});
-			    } else {
+                if (json.ldapuserresponse.count > 0) {
+                $(json.ldapuserresponse.LdapUser).each(function() {
+                    var result = $("<tr>");
+                    result.append("<td><input type=\"checkbox\" class=\"required\" name=\"username\" value=\"" + this.username + "\"></td>");
+                    result.append("<td>" + this.firstname + " " + this.lastname + "</td>");
+                    result.append("<td>" + this.username + "</td>");
+                    result.append("<td>" + this.email + "</td>");
+                    $table.append(result);
+                });
+                } else {
                                 var result = $("<tr>");
-				result.append("<td colspan=\"4\">No data to show</td>");
+                result.append("<td colspan=\"4\">No data to show</td>");
                                 $table.append(result);
-			    }
+                }
                         }
                     });
                 } else {

@@ -229,10 +229,10 @@ under the License.
             <!-- Step 5: Network -->
             <div class="step network always-load" wizard-step-id="network">
               <!-- 5a: Network description -->
-              <div class="wizard-step-conditional nothing-to-select">     
+              <div class="wizard-step-conditional nothing-to-select">
 								<p id="from_instance_page_1"><fmt:message key="message.zone.no.network.selection"/></p>
 								<p id="from_instance_page_2"><fmt:message key="message.please.proceed"/></p>
-								<p id="from_vpc_tier"></p>     										
+								<p id="from_vpc_tier"></p>
               </div>
 
               <!-- 5b: Select network -->
@@ -423,7 +423,7 @@ under the License.
                       <a href="5"><fmt:message key="label.edit"/></a>
                     </div>
                   </div>
-                  
+
                   <!-- Security groups -->
                   <div class="select odd">
                     <div class="name">
@@ -527,7 +527,7 @@ under the License.
                   </div>
                   <div class="select-area advanced-zone disabled">
                     <div class="desc">
-                      <fmt:message key="message.desc.advanced.zone"/>  
+                      <fmt:message key="message.desc.advanced.zone"/>
 										</div>
                     <input type="radio" name="network-model" value="Advanced" />
                     <label><fmt:message key="label.advanced"/></label>
@@ -555,7 +555,7 @@ under the License.
           <div class="setup-zone" zone-wizard-form="zone"
                zone-wizard-step-id="addZone">
             <div class="info-desc">
-              <fmt:message key="message.desc.zone"/> 
+              <fmt:message key="message.desc.zone"/>
 						</div>
             <div class="content input-area">
               <div class="select-container"></div>
@@ -774,7 +774,7 @@ under the License.
               <li class="secondary-storage"><fmt:message key="label.secondary.storage"/></li>
             </ul>
             <div class="info-desc">
-              <fmt:message key="message.desc.host"/>         
+              <fmt:message key="message.desc.host"/>
 						</div>
             <div class="content input-area">
               <div class="select-container"></div>
@@ -998,7 +998,7 @@ under the License.
             <span><fmt:message key="label.refresh"/></span>
           </div>
           <div id="update_ssl_button" class="button action main-action reduced-hide lock" title="Updates your Console Proxy SSL Certificate">
-            <span class="icon">&nbsp;</span>            
+            <span class="icon">&nbsp;</span>
             <span><fmt:message key="label.update.ssl.cert"/></span>
           </div>
         </div>
@@ -1072,7 +1072,7 @@ under the License.
               <span class="button view-all hosts"
                     view-all-title="<fmt:message key="label.virtual.routers"/>"
                     view-all-target="virtualRouters"><fmt:message key="label.view.all"/></span>
-            </li> 
+            </li>
           </ul>
         </div>
       </div>
@@ -1247,7 +1247,7 @@ under the License.
             <div class="title">
               <span></span>
             </div>
-            
+
              <div class="button fetch-latest">
                <span><fmt:message key="label.fetch.latest"/></span>
               </div>
@@ -1640,11 +1640,11 @@ under the License.
     <script src="lib/jquery.js" type="text/javascript"></script>
     <script src="lib/jquery.easing.js" type="text/javascript"></script>
     <script src="lib/jquery.validate.js" type="text/javascript"></script>
-    <script src="lib/jquery-ui/js/jquery-ui.js" type="text/javascript"></script>		
+    <script src="lib/jquery-ui/js/jquery-ui.js" type="text/javascript"></script>
     <script src="lib/date.js" type="text/javascript"></script>
     <script src="lib/jquery.cookies.js" type="text/javascript"></script>
     <script src="lib/jquery.md5.js" type="text/javascript" ></script>
-		
+
     <script src="lib/excanvas.js"></script>
     <script src="lib/flot/jquery.flot.js" type="text/javascript"></script>
     <script src="lib/flot/jquery.colorhelpers.js" type="text/javascript"></script>
@@ -1663,7 +1663,7 @@ under the License.
     <script type="text/javascript" src="scripts/ui/utils.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/events.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/dialog.js?t=<%=now%>"></script>
-    
+
     <script type="text/javascript" src="scripts/ui/widgets/multiEdit.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/overlay.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/dataTable.js?t=<%=now%>"></script>
@@ -1671,7 +1671,7 @@ under the License.
     <script type="text/javascript" src="scripts/ui/widgets/listView.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/detailView.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/treeView.js?t=<%=now%>"></script>
-    <script type="text/javascript" src="scripts/ui/widgets/notifications.js?t=<%=now%>"></script> 
+    <script type="text/javascript" src="scripts/ui/widgets/notifications.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/tagger.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/ui/widgets/toolTip.js?t=<%=now%>"></script>
     <script type="text/javascript" src="scripts/cloud.core.callbacks.js?t=<%=now%>"></script>

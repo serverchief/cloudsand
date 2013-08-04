@@ -189,7 +189,7 @@ CREATE VIEW `cloud`.`user_vm_view` AS
             and async_job.instance_type = 'VirtualMachine'
             and async_job.job_status = 0;
 
-            
+
 DROP VIEW IF EXISTS `cloud`.`domain_router_view`;
 CREATE VIEW `cloud`.`domain_router_view` AS
     select
@@ -280,7 +280,7 @@ CREATE VIEW `cloud`.`domain_router_view` AS
             left join
         `cloud`.`disk_offering` ON vm_instance.service_offering_id = disk_offering.id
             left join
-        `cloud`.`nics` ON vm_instance.id = nics.instance_id and nics.removed is null 
+        `cloud`.`nics` ON vm_instance.id = nics.instance_id and nics.removed is null
             left join
         `cloud`.`networks` ON nics.network_id = networks.id
             left join
@@ -299,7 +299,6 @@ INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'manag
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.user.object', 'inetOrgPerson', 'Sets the object type of users within LDAP');
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.basedn', NULL, 'Sets the basedn for LDAP');
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.search.group.principle', NULL, 'Sets the principle of the group that users must be a member of');
-INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.ssl.enabled', 'false', 'Enables/Disables SSL support for LDAP');
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.truststore', NULL, 'Sets the path to the truststore to use for LDAP SSL');
 INSERT IGNORE INTO `cloud`.`configuration` VALUES ('Advanced', 'DEFAULT', 'management-server', 'ldap.truststore.password', NULL, 'Sets the password for the truststore');
 
