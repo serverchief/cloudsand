@@ -23,43 +23,73 @@ import javax.inject.Inject;
 
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.BaseListCmd;
+import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
+import org.apache.cloudstack.api.command.admin.user.ListUsersCmd;
 import org.apache.cloudstack.api.response.LdapUserResponse;
 import org.apache.cloudstack.api.response.ListResponse;
+import org.apache.cloudstack.api.response.UserResponse;
 import org.apache.cloudstack.ldap.LdapManager;
 import org.apache.cloudstack.ldap.LdapUser;
 import org.apache.cloudstack.ldap.NoLdapUserMatchingQueryException;
+import org.apache.cloudstack.query.QueryService;
 import org.apache.log4j.Logger;
 
 import com.cloud.user.Account;
 
-@APICommand(name = "listAllLdapUsers", responseObject = LdapUserResponse.class, description = "Lists all LDAP Users", since = "4.2.0")
-public class LdapListAllUsersCmd extends BaseListCmd {
+@APICommand(name = "listLdapUsers", responseObject = LdapUserResponse.class, description = "Lists all LDAP Users", since = "4.2.0")
+public class LdapListUsersCmd extends BaseListCmd {
 
 	public static final Logger s_logger = Logger
-			.getLogger(LdapListAllUsersCmd.class.getName());
+			.getLogger(LdapListUsersCmd.class.getName());
 	private static final String s_name = "ldapuserresponse";
 	@Inject
 	private LdapManager _ldapManager;
 
-	public LdapListAllUsersCmd() {
+	@Inject
+	private QueryService _queryService;
+
+	@Parameter(name = "listtype", type = CommandType.STRING, required = false, description = "Determines whether all ldap users are returned or just non-cloudstack users")
+	private String listType;
+
+	public LdapListUsersCmd() {
 		super();
 	}
 
-	public LdapListAllUsersCmd(final LdapManager ldapManager) {
+	public LdapListUsersCmd(final LdapManager ldapManager, final QueryService queryService) {
 		super();
 		_ldapManager = ldapManager;
+		_queryService = queryService;
 	}
 
-	private List<LdapUserResponse> createLdapUserResponse(List<LdapUser> users) {
+	private String getListType() {
+		return listType == null ? "all" : listType;
+	}
+
+	private List<LdapUserResponse> createLdapUserResponse(
+			final List<LdapUser> users) {
 		final List<LdapUserResponse> ldapResponses = new ArrayList<LdapUserResponse>();
 		for (final LdapUser user : users) {
-			final LdapUserResponse ldapResponse = _ldapManager
-					.createLdapUserResponse(user);
-			ldapResponse.setObjectName("LdapUser");
-			ldapResponses.add(ldapResponse);
+			if(getListType().equals("all") || !isACloudstackUser(user)) {
+				final LdapUserResponse ldapResponse = _ldapManager.createLdapUserResponse(user);
+				ldapResponse.setObjectName("LdapUser");
+				ldapResponses.add(ldapResponse);
+			}
 		}
 		return ldapResponses;
+	}
+
+	private boolean isACloudstackUser(LdapUser ldapUser) {
+		ListResponse<UserResponse> response = _queryService.searchForUsers(new ListUsersCmd());
+		List<UserResponse> cloudstackUsers = response.getResponses();
+		if(cloudstackUsers != null && cloudstackUsers.size() != 0) {
+			for(UserResponse cloudstackUser : response.getResponses()) {
+				if(ldapUser.getUsername().equals(cloudstackUser.getUsername())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override

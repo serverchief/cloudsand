@@ -24,19 +24,14 @@ import org.apache.cloudstack.ldap.LdapUser
 import org.apache.cloudstack.ldap.NoLdapUserMatchingQueryException
 
 class LdapSearchUserCmdSpec extends spock.lang.Specification {
-    def "Test successful response from execute"() {
+    def "Test getEntityOwnerId is 1"() {
         given:
         def ldapManager = Mock(LdapManager)
-        List<LdapUser> users = new ArrayList()
-        users.add(new LdapUser("rmurphy", "rmurphy@test.com", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org"))
-        ldapManager.searchUsers(_) >> users
-        LdapUserResponse response = new LdapUserResponse("rmurphy", "rmurphy@test.com", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org")
-        ldapManager.createLdapUserResponse(_) >> response
         def ldapUserSearchCmd = new LdapUserSearchCmd(ldapManager)
         when:
-        ldapUserSearchCmd.execute()
+		long ownerId = ldapUserSearchCmd.getEntityOwnerId()
         then:
-        ldapUserSearchCmd.responseObject.getResponses().size() != 0
+		ownerId == 1
     }
 
     def "Test successful empty response from execute"() {
@@ -50,14 +45,19 @@ class LdapSearchUserCmdSpec extends spock.lang.Specification {
         ldapUserSearchCmd.responseObject.getResponses().size() == 0
     }
 
-    def "Test getEntityOwnerId is 0"() {
+    def "Test successful response from execute"() {
         given:
         def ldapManager = Mock(LdapManager)
+		List<LdapUser> users = new ArrayList()
+		users.add(new LdapUser("rmurphy", "rmurphy@test.com", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org"))
+		ldapManager.searchUsers(_) >> users
+		LdapUserResponse response = new LdapUserResponse("rmurphy", "rmurphy@test.com", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org")
+		ldapManager.createLdapUserResponse(_) >> response
         def ldapUserSearchCmd = new LdapUserSearchCmd(ldapManager)
         when:
-        long ownerId = ldapUserSearchCmd.getEntityOwnerId()
+		ldapUserSearchCmd.execute()
         then:
-        ownerId == 1
+		ldapUserSearchCmd.responseObject.getResponses().size() != 0
     }
 
     def "Test successful return of getCommandName"() {

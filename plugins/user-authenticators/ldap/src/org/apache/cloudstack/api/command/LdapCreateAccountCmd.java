@@ -91,16 +91,16 @@ public class LdapCreateAccountCmd extends BaseCmd {
 	@Override
 	public void execute() throws ServerApiException {
 		try {
-			LdapUser user = _ldapManager.getUser(username);
+			final LdapUser user = _ldapManager.getUser(username);
 			validateUser(user);
 			UserContext.current().setEventDetails("UserName: "+username+", FirstName :"+user.getFirstname()+", LastName: "+user.getLastname());
-			UserAccount userAccount = _accountService.createUserAccount(
+			final UserAccount userAccount = _accountService.createUserAccount(
 					username, generatePassword(), user.getFirstname(),
 					user.getLastname(), user.getEmail(), timezone, accountName,
 					accountType, domainId, networkDomain, details, accountUUID,
 					userUUID);
 			if (userAccount != null) {
-				AccountResponse response = _responseGenerator
+				final AccountResponse response = _responseGenerator
 						.createUserAccountResponse(userAccount);
 				response.setResponseName(getCommandName());
 				setResponseObject(response);
@@ -108,7 +108,7 @@ public class LdapCreateAccountCmd extends BaseCmd {
 				throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR,
 						"Failed to create a user account");
 			}
-		} catch (NamingException e) {
+		} catch (final NamingException e) {
 			throw new ServerApiException(
 					ApiErrorCode.RESOURCE_UNAVAILABLE_ERROR,
 					"No LDAP user exists with the username of " + username);
@@ -117,11 +117,11 @@ public class LdapCreateAccountCmd extends BaseCmd {
 
 	private String generatePassword() throws ServerApiException {
 		try {
-			SecureRandom randomGen = SecureRandom.getInstance("SHA1PRNG");
-			byte bytes[] = new byte[20];
+			final SecureRandom randomGen = SecureRandom.getInstance("SHA1PRNG");
+			final byte bytes[] = new byte[20];
 			randomGen.nextBytes(bytes);
 			return Base64.encode(bytes).toString();
-		} catch (NoSuchAlgorithmException e) {
+		} catch (final NoSuchAlgorithmException e) {
 			throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR,
 					"Failed to generate random password");
 		}
@@ -137,7 +137,7 @@ public class LdapCreateAccountCmd extends BaseCmd {
 		return Account.ACCOUNT_ID_SYSTEM;
 	}
 
-	private boolean validateUser(LdapUser user) throws ServerApiException {
+	private boolean validateUser(final LdapUser user) throws ServerApiException {
 		if (user.getEmail() == null) {
 			throw new ServerApiException(
 					ApiErrorCode.RESOURCE_UNAVAILABLE_ERROR, username
