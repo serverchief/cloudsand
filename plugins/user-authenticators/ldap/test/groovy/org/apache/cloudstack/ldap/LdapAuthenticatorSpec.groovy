@@ -42,14 +42,14 @@ class LdapAuthenticatorSpec extends spock.lang.Specification {
 		def ldapManager = Mock(LdapManager)
 		ldapManager.isLdapEnabled() >> true
 		ldapManager.canAuthenticate(_, _) >> false
-	
+
 		UserAccountDao userAccountDao = Mock(UserAccountDao)
 		userAccountDao.getUserAccount(_, _) >> new UserAccountVO()
 		def ldapAuthenticator = new LdapAuthenticator(ldapManager, userAccountDao)
-	
+
 		when: "The user authenticates with an incorrect password"
 		def result = ldapAuthenticator.authenticate("rmurphy", "password", 0, null)
-	
+
 		then: "their authentication fails"
 		result == false
     }
@@ -58,10 +58,10 @@ class LdapAuthenticatorSpec extends spock.lang.Specification {
 		given: "We have an LdapManager, A configured LDAP server, a userAccountDao and LdapAuthenticator"
 		def ldapManager = Mock(LdapManager)
 		ldapManager.isLdapEnabled() >> false
-	
+
 		UserAccountDao userAccountDao = Mock(UserAccountDao)
 		userAccountDao.getUserAccount(_, _) >> new UserAccountVO()
-	
+
 		def ldapAuthenticator = new LdapAuthenticator(ldapManager, userAccountDao)
 		when: "The user authenticates"
 		def result = ldapAuthenticator.authenticate("rmurphy", "password", 0, null)

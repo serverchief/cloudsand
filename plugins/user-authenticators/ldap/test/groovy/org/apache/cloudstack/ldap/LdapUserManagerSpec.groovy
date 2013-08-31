@@ -52,46 +52,46 @@ class LdapUserManagerSpec extends spock.lang.Specification {
 		SearchResult searchResults = createSearchResult(attributes)
 		def searchUsersResults = new BasicNamingEnumerationImpl()
 		searchUsersResults.add(searchResults);
-	
+
 		def context = Mock(LdapContext)
 		context.search(_, _, _) >> searchUsersResults;
-	
+
 		return context
     }
 
     private SearchResult createSearchResult(attributes) {
 		def search = Mock(SearchResult)
-	
+
 		search.getName() >> "cn=" + attributes.getAt("uid").get();
-	
+
 		search.getAttributes() >> attributes
-	
+
 		return search
     }
 
     private Attributes createUserAttributes(String username, String email, String firstname, String lastname) {
 		def attributes = Mock(Attributes)
-	
+
 		def nameAttribute = Mock(Attribute)
 		nameAttribute.getId() >> "uid"
 		nameAttribute.get() >> username
 		attributes.get("uid") >> nameAttribute
-	
+
 		def mailAttribute = Mock(Attribute)
 		mailAttribute.getId() >> "mail"
 		mailAttribute.get() >> email
 		attributes.get("mail") >> mailAttribute
-	
+
 		def givennameAttribute = Mock(Attribute)
 		givennameAttribute.getId() >> "givenname"
 		givennameAttribute.get() >> firstname
 		attributes.get("givenname") >> givennameAttribute
-	
+
 		def snAttribute = Mock(Attribute)
 		snAttribute.getId() >> "sn"
 		snAttribute.get() >> lastname
 		attributes.get("sn") >> snAttribute
-	
+
 		return attributes
     }
 
@@ -192,7 +192,7 @@ class LdapUserManagerSpec extends spock.lang.Specification {
 
 		when: "a get user request is made and no user is found"
 		def result = userManager.getUser(username, context)
-	
+
 		then: "An exception is thrown."
 		thrown NamingException
     }

@@ -31,6 +31,7 @@ import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.AccountResponse;
 import org.apache.cloudstack.api.response.DomainResponse;
+import org.apache.cloudstack.context.CallContext;
 import org.apache.cloudstack.ldap.LdapManager;
 import org.apache.cloudstack.ldap.LdapUser;
 import org.apache.log4j.Logger;
@@ -39,7 +40,6 @@ import org.bouncycastle.util.encoders.Base64;
 import com.cloud.user.Account;
 import com.cloud.user.AccountService;
 import com.cloud.user.UserAccount;
-import com.cloud.user.UserContext;
 
 @APICommand(name = "ldapCreateAccount", description = "Creates an account from an LDAP user", responseObject = AccountResponse.class, since = "4.2.0")
 public class LdapCreateAccountCmd extends BaseCmd {
@@ -88,17 +88,22 @@ public class LdapCreateAccountCmd extends BaseCmd {
 		_accountService = accountService;
 	}
 
+	UserAccount createCloudstackUserAccount(final LdapUser user) {
+		return _accountService.createUserAccount(username, generatePassword(),
+				user.getFirstname(), user.getLastname(), user.getEmail(),
+				timezone, accountName, accountType, domainId, networkDomain,
+				details, accountUUID, userUUID);
+	}
+
 	@Override
 	public void execute() throws ServerApiException {
+		final CallContext callContext = getCurrentContext();
+		callContext.setEventDetails("Account Name: " + accountName
+				+ ", Domain Id:" + domainId);
 		try {
 			final LdapUser user = _ldapManager.getUser(username);
 			validateUser(user);
-			UserContext.current().setEventDetails("UserName: "+username+", FirstName :"+user.getFirstname()+", LastName: "+user.getLastname());
-			final UserAccount userAccount = _accountService.createUserAccount(
-					username, generatePassword(), user.getFirstname(),
-					user.getLastname(), user.getEmail(), timezone, accountName,
-					accountType, domainId, networkDomain, details, accountUUID,
-					userUUID);
+			final UserAccount userAccount = createCloudstackUserAccount(user);
 			if (userAccount != null) {
 				final AccountResponse response = _responseGenerator
 						.createUserAccountResponse(userAccount);
@@ -130,6 +135,10 @@ public class LdapCreateAccountCmd extends BaseCmd {
 	@Override
 	public String getCommandName() {
 		return s_name;
+	}
+
+	CallContext getCurrentContext() {
+		return CallContext.current();
 	}
 
 	@Override

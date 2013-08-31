@@ -50,6 +50,9 @@ class LdapContextFactorySpec extends spock.lang.Specification {
         ldapConfiguration.getFirstnameAttribute() >> "givenname"
         ldapConfiguration.getLastnameAttribute() >> "sn"
         ldapConfiguration.getBaseDn() >> "dc=cloudstack,dc=org"
+		ldapConfiguration.getSSLStatus() >> true
+		ldapConfiguration.getTrustStore() >> "/tmp/ldap.ts"
+		ldapConfiguration.getTrustStorePassword() >> "password"
 
         username = "rmurphy"
         principal = "cn=" + username + "," + ldapConfiguration.getBaseDn()
@@ -101,23 +104,23 @@ class LdapContextFactorySpec extends spock.lang.Specification {
     def "Test successfully creating a system environment with anon bind"() {
 		given: "We have an LdapContext Factory"
 		def ldapContextFactory = new LdapContextFactory(ldapConfiguration)
-	
+
 		when: "A request for an environment is made"
 		def result = ldapContextFactory.getEnvironment(principal, password, null, false)
-	
+
 		then: "The resulting values should be set"
 		result['java.naming.provider.url'] == ldapConfiguration.getProviderUrl()
 		result['java.naming.factory.initial'] == ldapConfiguration.getFactory()
 		result['java.naming.security.principal'] == principal
 		result['java.naming.security.authentication'] == "simple"
 		result['java.naming.security.credentials'] == password
-	    }
-	
-	    def "Test successully binding as system"() {
+	}
+
+	def "Test successully binding as system"() {
 		given: "We have a LdapContextFactory"
-	        def ldapContextFactory = new LdapContextFactory(ldapConfiguration)
+	    def ldapContextFactory = new LdapContextFactory(ldapConfiguration)
 		when: "A bind context attempts to bind and no Ldap server is avaiable"
-	        ldapContextFactory.createBindContext()
+	    ldapContextFactory.createBindContext()
 		then: "An exception is thrown"
 		thrown NamingException
     }

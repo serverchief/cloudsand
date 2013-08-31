@@ -26,10 +26,10 @@ class LdapUtilsSpec extends spock.lang.Specification {
 	given: "You have an attributes object with some attribute"
 		def attributes = Mock(Attributes)
 		attributes.get("uid") >> null
-	
+
 		when: "You get the attribute"
 		String foundValue = LdapUtils.getAttributeValue(attributes, "uid")
-	
+
 		then: "Its value equals uid"
 		foundValue == null
     }

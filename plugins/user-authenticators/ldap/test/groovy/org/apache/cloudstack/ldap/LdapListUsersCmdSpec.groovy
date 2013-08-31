@@ -41,12 +41,12 @@ class LdapListUsersCmdSpec extends spock.lang.Specification {
 
     def "Test successful empty response from execute"() {
 		given: "We have a LdapManager with no users, QueryService and a LdapListUsersCmd"
-        def ldapManager = Mock(LdapManager)
-        ldapManager.getUsers() >> {throw new NoLdapUserMatchingQueryException()}
+	def ldapManager = Mock(LdapManager)
+	ldapManager.getUsers() >> {throw new NoLdapUserMatchingQueryException()}
 		def queryService = Mock(QueryService)
-        def ldapListUsersCmd = new LdapListUsersCmd(ldapManager, queryService)
+	def ldapListUsersCmd = new LdapListUsersCmd(ldapManager, queryService)
 		when: "LdapListUsersCmd is executed"
-        ldapListUsersCmd.execute()
+	ldapListUsersCmd.execute()
 		then: "An array of size 0 is returned"
 		ldapListUsersCmd.responseObject.getResponses().size() == 0
     }
@@ -69,54 +69,54 @@ class LdapListUsersCmdSpec extends spock.lang.Specification {
 
     def "Test successful return of getCommandName"() {
 		given: "We have an LdapManager, QueryService and a LdapListUsersCmd"
-    	def ldapManager = Mock(LdapManager)
+	def ldapManager = Mock(LdapManager)
 		def queryService = Mock(QueryService)
-    	def ldapListUsersCmd = new LdapListUsersCmd(ldapManager, queryService)
+	def ldapListUsersCmd = new LdapListUsersCmd(ldapManager, queryService)
 		when: "Get command name is called"
-    	String commandName = ldapListUsersCmd.getCommandName()
+	String commandName = ldapListUsersCmd.getCommandName()
 		then: "ldapuserresponse is returned"
-        commandName == "ldapuserresponse"
+	commandName == "ldapuserresponse"
     }
-	
+
 	def "Test successful result from isACloudstackUser"() {
 		given: "We have an LdapManager and a LdapListUsersCmd"
 		def ldapManager = Mock(LdapManager)
 		def queryService = Mock(QueryService)
-		
+
 		UserResponse userResponse = new UserResponse()
 		userResponse.setUsername("rmurphy")
-		
+
 		ArrayList<UserResponse> responses = new ArrayList<UserResponse>()
 		responses.add(userResponse);
-		
+
 		ListResponse<UserResponse> queryServiceResponse = new ListResponse<UserResponse>()
 		queryServiceResponse.setResponses(responses)
-		
+
 		queryService.searchForUsers(_) >> queryServiceResponse
-		
+
 		def ldapUser = new LdapUser("rmurphy", "rmurphy@cloudstack.org", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org")
 		def ldapListUsersCmd = new LdapListUsersCmd(ldapManager,queryService)
-		
+
 		when: "isACloudstackUser is executed"
 		def result = ldapListUsersCmd.isACloudstackUser(ldapUser);
-		
+
 		then: "The result is true"
 		result == true;
 	}
-	
+
 	def "Test failed result from isACloudstackUser"() {
 		given: "We have an LdapManager and a LdapListUsersCmd"
 		def ldapManager = Mock(LdapManager)
 		def queryService = Mock(QueryService)
-				
+
 		queryService.searchForUsers(_) >> new ListResponse<UserResponse>()
-		
+
 		def ldapUser = new LdapUser("rmurphy", "rmurphy@cloudstack.org", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org")
 		def ldapListUsersCmd = new LdapListUsersCmd(ldapManager,queryService)
-		
+
 		when: "isACloudstackUser is executed"
 		def result = ldapListUsersCmd.isACloudstackUser(ldapUser);
-		
+
 		then: "The result is true"
 		result == false;
 	}

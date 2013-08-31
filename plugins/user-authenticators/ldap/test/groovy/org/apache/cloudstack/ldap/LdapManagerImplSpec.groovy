@@ -235,11 +235,11 @@ class LdapManagerImplSpec extends spock.lang.Specification {
 		def ldapContextFactory = Mock(LdapContextFactory)
 		def ldapUserManager = Mock(LdapUserManager)
 		ldapContextFactory.createBindContext() >> null;
-	
+
 		List<LdapUser> users = new ArrayList<LdapUser>();
 		users.add(new LdapUser("rmurphy", "rmurphy@test.com", "Ryan", "Murphy", "cn=rmurphy,dc=cloudstack,dc=org"))
 		ldapUserManager.getUsers(_, _) >> users;
-	
+
 		def ldapManager = new LdapManagerImpl(ldapConfigurationDao, ldapContextFactory, ldapUserManager)
 		when: "We search for users"
 		def result = ldapManager.searchUsers("rmurphy");
@@ -301,7 +301,7 @@ class LdapManagerImplSpec extends spock.lang.Specification {
     }
 
     def "Testing of listConfigurations"() {
-        given:
+	given:  "We have an LdapConfigurationDao, LdapContextFactory, LdapUserManager and LdapManager"
         def ldapConfigurationDao = Mock(LdapConfigurationDaoImpl)
         def ldapContextFactory = Mock(LdapContextFactory)
         def ldapUserManager = Mock(LdapUserManager)
@@ -311,14 +311,14 @@ class LdapManagerImplSpec extends spock.lang.Specification {
         configurations.set(ldapConfigurationList, ldapConfigurationList.size())
         ldapConfigurationDao.searchConfigurations(_, _) >> configurations
         def ldapManager = new LdapManagerImpl(ldapConfigurationDao, ldapContextFactory, ldapUserManager)
-        when:
+	when: "A request for configurations is made"
         def result = ldapManager.listConfigurations(new LdapListConfigurationCmd())
-		then:
+		then: "Then atleast 1 ldap configuration is returned"
 		result.second() > 0
     }
 
 	def "Testing of isLdapEnabled"() {
-		given:
+		given:  "We have an LdapConfigurationDao, LdapContextFactory, LdapUserManager and LdapManager"
 		def ldapConfigurationDao = Mock(LdapConfigurationDaoImpl)
 		def ldapContextFactory = Mock(LdapContextFactory)
 		def ldapUserManager = Mock(LdapUserManager)
@@ -328,9 +328,9 @@ class LdapManagerImplSpec extends spock.lang.Specification {
 		configurations.set(ldapConfigurationList, ldapConfigurationList.size())
 		ldapConfigurationDao.searchConfigurations(_, _) >> configurations
 		def ldapManager = new LdapManagerImpl(ldapConfigurationDao, ldapContextFactory, ldapUserManager)
-		when:
+		when: "A request to find out is ldap enabled"
 		def result = ldapManager.isLdapEnabled();
-		then:
+		then: "true is returned because a configuration was found"
 		result == true;
 	}
 }

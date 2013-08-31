@@ -16,7 +16,7 @@
 // under the License.
 package groovy.org.apache.cloudstack.ldap
 
-import com.cloud.configuration.dao.ConfigurationDao
+import org.apache.cloudstack.framework.config.dao.ConfigurationDao;
 import com.cloud.utils.Pair
 import org.apache.cloudstack.api.ServerApiException
 import org.apache.cloudstack.ldap.LdapConfiguration
@@ -168,12 +168,12 @@ class LdapConfigurationSpec extends spock.lang.Specification {
 		Pair<List<LdapConfigurationVO>, Integer> result = new Pair<List<LdapConfigurationVO>, Integer>();
 		result.set(ldapConfigurationList, ldapConfigurationList.size())
 		ldapManager.listConfigurations(_) >> result
-	
+
 		LdapConfiguration ldapConfiguration = new LdapConfiguration(configDao, ldapManager)
-	
+
 		when: "A request is made to get the providerUrl"
 		String providerUrl = ldapConfiguration.getProviderUrl()
-	
+
 		then: "The providerUrl should be given."
 		providerUrl == "ldap://localhost:389"
     }

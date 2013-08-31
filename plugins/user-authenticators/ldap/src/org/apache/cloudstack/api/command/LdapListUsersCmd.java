@@ -56,40 +56,25 @@ public class LdapListUsersCmd extends BaseListCmd {
 		super();
 	}
 
-	public LdapListUsersCmd(final LdapManager ldapManager, final QueryService queryService) {
+	public LdapListUsersCmd(final LdapManager ldapManager,
+			final QueryService queryService) {
 		super();
 		_ldapManager = ldapManager;
 		_queryService = queryService;
-	}
-
-	private String getListType() {
-		return listType == null ? "all" : listType;
 	}
 
 	private List<LdapUserResponse> createLdapUserResponse(
 			final List<LdapUser> users) {
 		final List<LdapUserResponse> ldapResponses = new ArrayList<LdapUserResponse>();
 		for (final LdapUser user : users) {
-			if(getListType().equals("all") || !isACloudstackUser(user)) {
-				final LdapUserResponse ldapResponse = _ldapManager.createLdapUserResponse(user);
+			if (getListType().equals("all") || !isACloudstackUser(user)) {
+				final LdapUserResponse ldapResponse = _ldapManager
+						.createLdapUserResponse(user);
 				ldapResponse.setObjectName("LdapUser");
 				ldapResponses.add(ldapResponse);
 			}
 		}
 		return ldapResponses;
-	}
-
-	private boolean isACloudstackUser(LdapUser ldapUser) {
-		ListResponse<UserResponse> response = _queryService.searchForUsers(new ListUsersCmd());
-		List<UserResponse> cloudstackUsers = response.getResponses();
-		if(cloudstackUsers != null && cloudstackUsers.size() != 0) {
-			for(UserResponse cloudstackUser : response.getResponses()) {
-				if(ldapUser.getUsername().equals(cloudstackUser.getUsername())) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	@Override
@@ -116,5 +101,23 @@ public class LdapListUsersCmd extends BaseListCmd {
 	@Override
 	public long getEntityOwnerId() {
 		return Account.ACCOUNT_ID_SYSTEM;
+	}
+
+	private String getListType() {
+		return listType == null ? "all" : listType;
+	}
+
+	private boolean isACloudstackUser(final LdapUser ldapUser) {
+		final ListResponse<UserResponse> response = _queryService
+				.searchForUsers(new ListUsersCmd());
+		final List<UserResponse> cloudstackUsers = response.getResponses();
+		if (cloudstackUsers != null && cloudstackUsers.size() != 0) {
+			for (final UserResponse cloudstackUser : response.getResponses()) {
+				if (ldapUser.getUsername().equals(cloudstackUser.getUsername())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
