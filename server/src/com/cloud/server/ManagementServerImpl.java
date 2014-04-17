@@ -63,7 +63,6 @@ import org.apache.cloudstack.api.command.admin.cluster.*;
 import org.apache.cloudstack.api.command.admin.config.*;
 import org.apache.cloudstack.api.command.admin.domain.*;
 import org.apache.cloudstack.api.command.admin.host.*;
-import org.apache.cloudstack.api.command.admin.ldap.*;
 import org.apache.cloudstack.api.command.admin.network.*;
 import org.apache.cloudstack.api.command.admin.offering.*;
 import org.apache.cloudstack.api.command.admin.pod.*;
@@ -1884,8 +1883,6 @@ public class ManagementServerImpl extends ManagerBase implements ManagementServe
         cmdList.add(ReconnectHostCmd.class);
         cmdList.add(UpdateHostCmd.class);
         cmdList.add(UpdateHostPasswordCmd.class);
-        cmdList.add(LDAPConfigCmd.class);
-        cmdList.add(LDAPRemoveCmd.class);
         cmdList.add(AddNetworkDeviceCmd.class);
         cmdList.add(AddNetworkServiceProviderCmd.class);
         cmdList.add(CreateNetworkOfferingCmd.class);

@@ -47,7 +47,6 @@ import org.apache.cloudstack.api.response.InstanceGroupResponse;
 import org.apache.cloudstack.api.response.IpForwardingRuleResponse;
 import org.apache.cloudstack.api.response.LBStickinessPolicyResponse;
 import org.apache.cloudstack.api.response.LBStickinessResponse;
-import org.apache.cloudstack.api.response.LDAPConfigResponse;
 import org.apache.cloudstack.api.response.LoadBalancerResponse;
 import org.apache.cloudstack.api.response.NetworkACLResponse;
 import org.apache.cloudstack.api.response.NetworkOfferingResponse;
@@ -2442,9 +2441,6 @@ public class ApiResponseHelper implements ResponseGenerator {
         return listProjs.get(0);
     }
 
-
-
-
     @Override
     public ProjectInvitationResponse createProjectInvitationResponse(ProjectInvitation invite) {
         ProjectInvitationJoinVO vInvite = ApiDBUtils.newProjectInvitationView(invite);
@@ -2673,21 +2669,6 @@ public class ApiResponseHelper implements ResponseGenerator {
 
         spResponse.setObjectName("stickinesspolicies");
         return spResponse;
-    }
-
-    @Override
-    public LDAPConfigResponse createLDAPConfigResponse(String hostname,
-            Integer port, Boolean useSSL, String queryFilter,
-            String searchBase, String bindDN) {
-        LDAPConfigResponse lr = new LDAPConfigResponse();
-        lr.setHostname(hostname);
-        lr.setPort(port.toString());
-        lr.setUseSSL(useSSL.toString());
-        lr.setQueryFilter(queryFilter);
-        lr.setBindDN(bindDN);
-        lr.setSearchBase(searchBase);
-        lr.setObjectName("ldapconfig");
-        return lr;
     }
 
     @Override

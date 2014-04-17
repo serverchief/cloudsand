@@ -114,7 +114,7 @@ known_categories = {
     'TrafficType': 'Usage',
     'Product': 'Product',
     'LB': 'Load Balancer',
-    'ldap': 'LDAP',
+    'Ldap': 'LDAP',
     'Swift': 'Swift',
     'S3' : 'S3',
     'SecondaryStorage': 'Host',

@@ -199,8 +199,6 @@ changeServiceForSystemVm=1
 #### configuration commands
 updateConfiguration=1
 listConfigurations=1
-ldapConfig=1
-ldapRemove=1
 listCapabilities=15
 
 #### pod commands
@@ -540,3 +538,10 @@ listRegions=15
 
 #### Baremetal commands
 addBaremetalHost=1
+
+#### LDAP
+listLdapConfigurations=15
+addLdapConfiguration=3
+deleteLdapConfiguration=3
+listLdapUsers=3
+ldapCreateAccount=3
